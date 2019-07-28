@@ -74,7 +74,6 @@ public class Main extends Application {
     
     
     private void readCSV(File file){
-    	String FieldDelimiter = ",";
     	BufferedReader br;
     	try {
     		//  Block of code to try
