@@ -46,7 +46,6 @@ public class Main extends Application {
             { 
             		fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("File CSV", "*.csv"));
             		selectedFile = fileChooser.showOpenDialog(primaryStage);
-            		//System.out.println(selectedFile);
             		readCSV(selectedFile);	
             } 
         });
@@ -85,7 +84,7 @@ public class Main extends Application {
     				int columna=0;
     				String [] x=line.split(";");
     				for(String i:x) {
-    					gridpane.add(new Label(i),fila,columna);
+    					gridpane.add(new Label(i),columna,fila);
     					columna++;
     				}
     				fila++;}
