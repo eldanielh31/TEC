@@ -8,11 +8,7 @@ import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Scene;
-import javafx.scene.control.Label;
-import javafx.scene.control.Menu;
-import javafx.scene.control.MenuBar;
-import javafx.scene.control.MenuItem;
-import javafx.scene.control.ScrollPane;
+import javafx.scene.control.*;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.FileChooser;
@@ -25,7 +21,8 @@ public class Main extends Application {
 	private FileChooser fileChooser = new FileChooser();
 	private File selectedFile;
 	private GridPane gridpane;
-	
+	private TableView tableView = new TableView();
+
     public static void main(String[] args) {
         launch(args);
     }
