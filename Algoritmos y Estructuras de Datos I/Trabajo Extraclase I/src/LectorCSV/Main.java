@@ -59,8 +59,6 @@ public class Main extends Application {
 
         gridpane=new GridPane();
         gridpane.setGridLinesVisible(true);
-        //gridpane.setVgap(10);
-        //gridpane.setHgap(10);
 
         VBox vBox = new VBox(rootmenu,gridpane);
 
