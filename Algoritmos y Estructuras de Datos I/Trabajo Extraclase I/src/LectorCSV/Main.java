@@ -1,20 +1,13 @@
 package LectorCSV;
 
-import java.awt.*;
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
+import java.io.*;
 import javax.swing.JOptionPane;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
-import javafx.scene.control.Label;
-import javafx.scene.control.Menu;
-import javafx.scene.control.MenuBar;
-import javafx.scene.control.MenuItem;
-import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
@@ -28,6 +21,7 @@ public class Main extends Application {
     private FileChooser fileChooser = new FileChooser();
     private File selectedFile;
     private GridPane gridpane;
+    private Alert alert = new Alert(Alert.AlertType.WARNING);
 
     public static void main(String[] args) {
         launch(args);
@@ -49,7 +43,11 @@ public class Main extends Application {
             {
                 fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("File CSV", "*.csv"));
                 selectedFile = fileChooser.showOpenDialog(primaryStage);
-                readCSV(selectedFile);
+                try {
+                    readCSV(selectedFile);
+                } catch (IOException ex) {
+                    ex.printStackTrace();
+                }
             }
         });
 
@@ -74,12 +72,13 @@ public class Main extends Application {
 
 
 
-    private void readCSV(File file){
+    private void readCSV(File file) throws IOException {
         BufferedReader br;
         try {
-            //  Block of code to try
             br = new BufferedReader(new FileReader(file));
             if(br.readLine()!=null) {
+
+                CleanGrid();
                 int fila=0;
                 String line;
                 while((line = br.readLine()) !=null) {
@@ -89,18 +88,29 @@ public class Main extends Application {
                         Label h=new Label(i);
                         h.setFont(new Font("Arial",15));
                         gridpane.add(h,columna,fila);
-                        columna++;
-                    }
+                        columna++;}
                     fila++;}
             }
             else {
-                JOptionPane.showMessageDialog(null, "Introduzca un archivo con contenido.");
+                alert.setTitle("Warning Dialog");
+                alert.setHeaderText(null);
+                alert.setContentText("Archivo vacío");
+                alert.showAndWait();
             }
         }
-        catch(Exception e) {
-            //  Block of code to handle errors
-            JOptionPane.showMessageDialog(null, "Error al leer el archivo.");
+
+        catch (NullPointerException e) {
+            alert.setTitle("Warning Dialog");
+            alert.setHeaderText(null);
+            alert.setContentText("Error al abrir el archivo!");
+            alert.showAndWait();
         }
     }
-}
 
+    private void CleanGrid(){
+        Node node=gridpane.getChildren().get(0);
+        gridpane.getChildren().clear();
+        gridpane.getChildren().add(0,node);
+    }
+
+}
