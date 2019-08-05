@@ -29,8 +29,8 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) {
-        primaryStage.setTitle("Lector CSV");
 
+        primaryStage.setTitle("Lector CSV");
 
         archivo=new Menu("Archivo");
 
