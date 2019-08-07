@@ -1,7 +1,6 @@
 package LectorCSV;
 
 import java.io.*;
-import javax.swing.JOptionPane;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
