@@ -2,8 +2,10 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/Algoritmos y Estructuras de Datos I/Ejemplo Builder/Ejemplo Builder.iml" filepath="$PROJECT_DIR$/Algoritmos y Estructuras de Datos I/Ejemplo Builder/Ejemplo Builder.iml" />
       <module fileurl="file://$PROJECT_DIR$/Algoritmos y Estructuras de Datos I/Ejemplo Excepciones/Ejemplo Excepciones.iml" filepath="$PROJECT_DIR$/Algoritmos y Estructuras de Datos I/Ejemplo Excepciones/Ejemplo Excepciones.iml" />
       <module fileurl="file://$PROJECT_DIR$/Algoritmos y Estructuras de Datos I/Trabajo Extraclase I/Trabajo Extraclase I.iml" filepath="$PROJECT_DIR$/Algoritmos y Estructuras de Datos I/Trabajo Extraclase I/Trabajo Extraclase I.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Algoritmos y Estructuras de Datos I/cr.ac.tec.oop/cr.ac.tec.oop.iml" filepath="$PROJECT_DIR$/Algoritmos y Estructuras de Datos I/cr.ac.tec.oop/cr.ac.tec.oop.iml" />
     </modules>
   </component>
 </project>
