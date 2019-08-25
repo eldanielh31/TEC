@@ -69,8 +69,6 @@ public class Main extends Application {
         primaryStage.show();
     }
 
-
-
     private void readCSV(File file) throws IOException {
         BufferedReader br;
         try {
