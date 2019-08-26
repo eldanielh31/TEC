@@ -8,6 +8,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.*;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
@@ -28,6 +29,21 @@ public class RootMain extends Application {
         //Creacion de los operadores disponibles en la paleta
         AND and = (AND)new FacadePalete().ComponentFacade(TypeComponent.AND);
         final ImageView AND=and.getImage();
+
+
+        AND.setOnDragDetected(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                Dragboard db=AND.startDragAndDrop(TransferMode.ANY);
+
+                ClipboardContent content=new ClipboardContent();
+                content.putString("Hola");
+                db.setContent(content);
+
+                event.consume();
+            }
+        });
+
 
         NAND nand= (NAND)new FacadePalete().ComponentFacade(TypeComponent.NAND);
         final ImageView NAND=nand.getImage();

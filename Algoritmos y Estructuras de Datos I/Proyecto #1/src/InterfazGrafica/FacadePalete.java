@@ -3,7 +3,6 @@ package InterfazGrafica;
 import ComponentesLogicos.*;
 import javafx.scene.image.Image;
 
-import java.io.FileNotFoundException;
 
 public class FacadePalete {
 
