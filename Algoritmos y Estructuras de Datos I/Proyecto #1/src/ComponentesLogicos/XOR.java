@@ -35,7 +35,7 @@ public class XOR extends Componente implements Component{
 
     public ImageView getImage() {
         ImageView and=new ImageView(Image);
-        and.setFitWidth(50);
+        and.setFitWidth(90);
         and.setFitHeight(50);
         return and;
     }
