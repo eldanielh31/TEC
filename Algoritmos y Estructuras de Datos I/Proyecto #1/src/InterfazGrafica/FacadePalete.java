@@ -12,19 +12,19 @@ public class FacadePalete {
             return new AND(new Image("ImageComponents/AND.jpg"));
         }
         else if (t==TypeComponent.NAND){
-            return new NAND();
+            return new NAND(new Image("ImageComponents/NAND.jpg"));
         }
         else if (t==TypeComponent.NOR){
-            return new NOR();
+            return new NOR(new Image("ImageComponents/NOR.jpg"));
         }
         else if (t==TypeComponent.OR){
-            return new OR();
+            return new OR(new Image("ImageComponents/OR.jpg"));
         }
         else if (t==TypeComponent.XNOR){
-            return new XNOR();
+            return new XNOR(new Image("ImageComponents/XNOR.jpg"));
         }
         else if (t==TypeComponent.XOR){
-            return new XOR();
+            return new XOR(new Image("ImageComponents/XOR.jpg"));
         }
         else{
             return new Componente();

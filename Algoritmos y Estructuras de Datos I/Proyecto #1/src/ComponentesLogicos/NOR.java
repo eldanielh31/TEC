@@ -1,9 +1,18 @@
 package ComponentesLogicos;
 
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+
+
 public class NOR extends Componente implements Component{
 
     private int Entrada1;
     private int Entrada2;
+    private javafx.scene.image.Image Image;
+
+    public NOR(Image image) {
+        Image = image;
+    }
 
     @Override
     public void setPrimeraEntrada(int entrada) {
@@ -24,4 +33,13 @@ public class NOR extends Componente implements Component{
             return 0;
         }
     }
+
+
+    public ImageView getImage() {
+        ImageView and=new ImageView(Image);
+        and.setFitWidth(50);
+        and.setFitHeight(50);
+        return and;
+    }
+
 }

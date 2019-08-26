@@ -1,9 +1,17 @@
 package ComponentesLogicos;
 
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+
 public class XOR extends Componente implements Component{
 
     private int Entrada1;
     private int Entrada2;
+    private Image Image;
+
+    public XOR(Image image) {
+        Image = image;
+    }
 
     @Override
     public void setPrimeraEntrada(int entrada) {
@@ -24,4 +32,12 @@ public class XOR extends Componente implements Component{
             return 1;
         }
     }
+
+    public ImageView getImage() {
+        ImageView and=new ImageView(Image);
+        and.setFitWidth(50);
+        and.setFitHeight(50);
+        return and;
+    }
+
 }

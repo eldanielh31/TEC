@@ -23,4 +23,5 @@ public interface Component {
      * @return - Resultado de la operacion logica
      */
     public int getSalida();
+
 }

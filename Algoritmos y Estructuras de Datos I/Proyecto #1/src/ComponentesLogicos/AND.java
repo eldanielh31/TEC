@@ -1,6 +1,7 @@
 package ComponentesLogicos;
 
 import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 
 public class AND extends Componente implements Component {
     private int Entrada1;
@@ -32,7 +33,10 @@ public class AND extends Componente implements Component {
         }
     }
 
-    public Image getImage() {
-        return Image;
+    public ImageView getImage() {
+        ImageView and=new ImageView(Image);
+        and.setFitWidth(50);
+        and.setFitHeight(50);
+        return and;
     }
 }
