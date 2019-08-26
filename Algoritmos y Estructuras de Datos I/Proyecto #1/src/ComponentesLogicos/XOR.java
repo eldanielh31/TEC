@@ -1,6 +1,6 @@
 package ComponentesLogicos;
 
-public class XOR implements Component{
+public class XOR extends Componente implements Component{
 
     private int Entrada1;
     private int Entrada2;

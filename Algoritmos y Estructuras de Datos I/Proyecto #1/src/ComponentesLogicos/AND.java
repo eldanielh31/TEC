@@ -2,7 +2,7 @@ package ComponentesLogicos;
 
 import javafx.scene.image.Image;
 
-public class AND implements Component {
+public class AND extends Componente implements Component {
     private int Entrada1;
     private int Entrada2;
     private Image Image;

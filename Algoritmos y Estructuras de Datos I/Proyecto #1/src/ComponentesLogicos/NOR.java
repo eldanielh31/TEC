@@ -1,6 +1,6 @@
 package ComponentesLogicos;
 
-public class NOR implements Component{
+public class NOR extends Componente implements Component{
 
     private int Entrada1;
     private int Entrada2;

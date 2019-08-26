@@ -1,6 +1,8 @@
 package InterfazGrafica;
 
 import ComponentesLogicos.AND;
+import ComponentesLogicos.Componente;
+import ComponentesLogicos.TypeComponent;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -30,7 +32,7 @@ public class RootMain extends Application {
         Button button=new Button("Hola");
         button.setOnAction(new EventHandler<ActionEvent>() {
             @Override public void handle(ActionEvent e) {
-                AND and= new AND(new Image("ImageComponents/AND.jpg"));
+                Componente and = new FacadePalete().ComponentFacade(TypeComponent.AND);
                 and.setPrimeraEntrada(1);
                 and.setSegundaEntrada(1);
                 System.out.println(and.getSalida());

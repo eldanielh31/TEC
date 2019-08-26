@@ -1,6 +1,6 @@
 package ComponentesLogicos;
 
-public class NAND implements Component{
+public class NAND extends Componente implements Component{
 
     private int Entrada1;
     private int Entrada2;

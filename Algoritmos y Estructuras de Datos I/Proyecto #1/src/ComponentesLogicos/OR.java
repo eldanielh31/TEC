@@ -1,6 +1,6 @@
 package ComponentesLogicos;
 
-public class OR implements Component {
+public class OR extends Componente implements Component {
 
     private int Entrada1;
     private int Entrada2;

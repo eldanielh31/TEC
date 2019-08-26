@@ -1,6 +1,6 @@
 package ComponentesLogicos;
 
-public class XNOR implements Component{
+public class XNOR extends Componente implements Component{
 
     private int Entrada1;
     private int Entrada2;
