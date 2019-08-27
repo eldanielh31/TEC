@@ -4,7 +4,7 @@ import ComponentesLogicos.*;
 import javafx.scene.image.Image;
 
 
-public class FacadePalete {
+public class FactoryPalete {
 
     public static Componente ComponentFacade(TypeComponent t){
         if (t==TypeComponent.AND){

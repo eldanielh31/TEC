@@ -16,18 +16,16 @@ import javafx.stage.Stage;
 public class RootMain extends Application {
     private VBox CompLog;
 
-
     public static void main(String [] arg){
         launch(arg);
     }
-
 
     @Override
     public void start(Stage primaryStage) throws Exception {
         primaryStage.setTitle("Simulador de Circuitos Logicos");
 
         //Creacion de los operadores disponibles en la paleta
-        AND and = (AND)new FacadePalete().ComponentFacade(TypeComponent.AND);
+        AND and = (AND)new FactoryPalete().ComponentFacade(TypeComponent.AND);
         final ImageView AND=and.getImage();
 
 
@@ -45,19 +43,19 @@ public class RootMain extends Application {
         });
 
 
-        NAND nand= (NAND)new FacadePalete().ComponentFacade(TypeComponent.NAND);
+        NAND nand= (NAND)new FactoryPalete().ComponentFacade(TypeComponent.NAND);
         final ImageView NAND=nand.getImage();
 
-        OR or= (OR) new FacadePalete().ComponentFacade(TypeComponent.OR);
+        OR or= (OR) new FactoryPalete().ComponentFacade(TypeComponent.OR);
         final ImageView OR=or.getImage();
 
-        XOR xor= (XOR)new FacadePalete().ComponentFacade(TypeComponent.XOR);
+        XOR xor= (XOR)new FactoryPalete().ComponentFacade(TypeComponent.XOR);
         final ImageView XOR=xor.getImage();
 
-        NOR nor= (NOR)new FacadePalete().ComponentFacade(TypeComponent.NOR);
+        NOR nor= (NOR)new FactoryPalete().ComponentFacade(TypeComponent.NOR);
         final ImageView NOR=nor.getImage();
 
-        XNOR xnor= (XNOR)new FacadePalete().ComponentFacade(TypeComponent.XNOR);
+        XNOR xnor= (XNOR)new FactoryPalete().ComponentFacade(TypeComponent.XNOR);
         final ImageView XNOR=xnor.getImage();
 
 
@@ -65,7 +63,7 @@ public class RootMain extends Application {
         Button button=new Button("Hola");
         button.setOnAction(new EventHandler<ActionEvent>() {
             @Override public void handle(ActionEvent e) {
-                Componente and = new FacadePalete().ComponentFacade(TypeComponent.AND);
+                Componente and = new FactoryPalete().ComponentFacade(TypeComponent.AND);
                 and.setPrimeraEntrada(1);
                 and.setSegundaEntrada(1);
                 System.out.println(and.getSalida());
