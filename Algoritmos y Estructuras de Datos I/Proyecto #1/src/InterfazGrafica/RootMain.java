@@ -1,6 +1,7 @@
 package InterfazGrafica;
 
 import ComponentesLogicos.*;
+import Lista.ListaEnlazada;
 import javafx.application.Application;
 import javafx.event.EventHandler;
 import javafx.scene.Group;
@@ -12,7 +13,16 @@ import javafx.scene.input.*;
 import javafx.scene.layout.*;
 import javafx.stage.Stage;
 
+import java.awt.*;
+
+
+/**
+ * Esta clase funciona como ventana principal de la aplicacion.
+ * En ella se encuentra todos los componentes de la clase principal
+ */
 public class RootMain extends Application {
+    //Variables necesarias de clase
+    public static ListaEnlazada Lista=new ListaEnlazada();
     public static final TextArea AreaText=new TextArea();
     public static final Group Group=new Group();
     public static final Pane Centro=new Pane(Group);
@@ -26,12 +36,22 @@ public class RootMain extends Application {
     public static ImageView NOTI;
 
 
+    /**
+     * Este metodo inicia la aplicacion.
+     * @param arg
+     */
     public static void main(String [] arg){
         launch(arg);
     }
 
+    /**
+     * Este metodo contiene todos los componentes de la interfaz grafica
+     * de la pantalla principal.
+     * @param primaryStage - Este parametro es la ventana principal, donde se colocará la scene
+     *                     y sus respectivos componentes.
+     */
     @Override
-    public void start(Stage primaryStage){
+    public void start(Stage primaryStage) throws  Exception{
 
         primaryStage.setTitle("Simulador de Circuitos Lógicos");
 
@@ -43,6 +63,8 @@ public class RootMain extends Application {
         XNORI=xnor.getImage(),
         ANDI=and.getImage(),
         NOTI=not.getImage()};
+
+        //Asignar a cada imagen su evento
         String[] Names={NOR.Name,XOR.Name,NAND.Name,OR.Name,XNOR.Name,AND.Name,NOT.Name};
         int a=0;
         for (ImageView x:Imagenes){
@@ -72,6 +94,7 @@ public class RootMain extends Application {
         ScrollPane Derecha=new ScrollPane(CompLog);
 
         //Creacion del border pane y colocacion de componentes
+        AreaText.setEditable(false);
         BorderPane borderPane=new BorderPane();
         borderPane.setCenter(Centro);
         borderPane.setRight(Derecha);

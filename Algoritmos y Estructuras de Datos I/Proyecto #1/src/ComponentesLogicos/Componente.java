@@ -5,11 +5,12 @@ import javafx.scene.image.ImageView;
 
 public class Componente implements Component{
 
+
     private Image Image;
     protected int Entrada1;
     protected int Entrada2;
 
-    public Componente(javafx.scene.image.Image image, int entrada1, int entrada2) {
+    public Componente(Image image, int entrada1, int entrada2) {
         Image = image;
         Entrada1 = entrada1;
         Entrada2 = entrada2;

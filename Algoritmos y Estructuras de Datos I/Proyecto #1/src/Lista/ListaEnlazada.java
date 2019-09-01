@@ -2,7 +2,8 @@ package Lista;
 
 import ComponentesLogicos.Componente;
 
-public class ListaEnlazada {
+
+public class ListaEnlazada{
 
     private Nodo cabeza;
     private int Tamano;
