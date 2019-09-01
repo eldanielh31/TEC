@@ -6,7 +6,7 @@ import javafx.scene.image.Image;
 
 public class FactoryPalete {
 
-    public static Componente ComponentFacade(TypeComponent t){
+    public static Componente ComponentFactory(TypeComponent t){
         if (t==TypeComponent.AND){
             return new AND(new Image("ImageComponents/AND.jpg"),0,0);
         }

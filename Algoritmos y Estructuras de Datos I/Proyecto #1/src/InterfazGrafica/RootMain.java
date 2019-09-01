@@ -12,9 +12,19 @@ import javafx.scene.input.*;
 import javafx.scene.layout.*;
 import javafx.stage.Stage;
 
+import java.awt.image.ImagingOpException;
+import java.text.Normalizer;
+
 
 public class RootMain extends Application {
     private VBox CompLog;
+    public static ImageView ANDI;
+    public static  ImageView NANDI;
+    public static  ImageView ORI;
+    public static  ImageView XORI;
+    public static  ImageView NORI;
+    public static ImageView XNORI;
+
 
     public static void main(String [] arg){
         launch(arg);
@@ -24,47 +34,25 @@ public class RootMain extends Application {
     public void start(Stage primaryStage) throws Exception {
         primaryStage.setTitle("Simulador de Circuitos Logicos");
 
-        //Creacion de los operadores disponibles en la paleta
-        AND and = (AND)new FactoryPalete().ComponentFacade(TypeComponent.AND);
-        final ImageView ANDI=and.getImage();
-
-        ANDI.setOnDragDetected(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent event) {
-                System.out.println("Drag");
-                Dragboard db=ANDI.startDragAndDrop(TransferMode.ANY);
-
-                ClipboardContent content=new ClipboardContent();
-                content.putString(AND.Name);
-                db.setContent(content);
-                event.consume();
-            }
-        });
-
-        ANDI.setOnDragDropped(new EventHandler<DragEvent>() {
-            @Override
-            public void handle(DragEvent event) {
-                System.out.println("Dropped");
-            }
-        });
-
-
-        NAND nand= (NAND)new FactoryPalete().ComponentFacade(TypeComponent.NAND);
-        final ImageView NANDI=nand.getImage();
-
-        OR or= (OR) new FactoryPalete().ComponentFacade(TypeComponent.OR);
-        final ImageView ORI=or.getImage();
-
-        XOR xor= (XOR)new FactoryPalete().ComponentFacade(TypeComponent.XOR);
-        final ImageView XORI=xor.getImage();
-
-        NOR nor= (NOR)new FactoryPalete().ComponentFacade(TypeComponent.NOR);
-        final ImageView NORI=nor.getImage();
-
-        XNOR xnor= (XNOR)new FactoryPalete().ComponentFacade(TypeComponent.XNOR);
-        final ImageView XNORI=xnor.getImage();
-
-
+        //Creando imagenes en un array
+        ImageView [] Imagenes={NORI=nor.getImage(),
+        XORI=xor.getImage(),
+        NANDI=nand.getImage(),
+        ORI=or.getImage(),
+        XNORI=xnor.getImage(),
+        ANDI=and.getImage()};
+        String[] Names={NOR.Name,XNOR.Name,NAND.Name,OR.Name,XNOR.Name,AND.Name};
+        int a=0;
+        for (ImageView x:Imagenes){
+            int finalA = a;
+            x.setOnDragDetected(new EventHandler<MouseEvent>() {
+                @Override
+                public void handle(MouseEvent event) {
+                    Eventos.DragDetected(event,x,Names[finalA]);
+                }
+            });
+        a++;
+        }
         //Componentes del border central
 
         //VBox vBox = new VBox();
@@ -111,7 +99,12 @@ public class RootMain extends Application {
         primaryStage.setScene(scene);
         primaryStage.show();
 
-
-
     }
+    //Creacion de los operadores disponibles en la paleta
+    NAND nand= (NAND) new FactoryPalete().ComponentFactory(TypeComponent.NAND);
+    OR or= (OR) new FactoryPalete().ComponentFactory(TypeComponent.OR);
+    XOR xor= (XOR)new FactoryPalete().ComponentFactory(TypeComponent.XOR);
+    NOR nor= (NOR)new FactoryPalete().ComponentFactory(TypeComponent.NOR);
+    XNOR xnor= (XNOR)new FactoryPalete().ComponentFactory(TypeComponent.XNOR);
+    AND and = (AND)new FactoryPalete().ComponentFactory(TypeComponent.AND);
 }
