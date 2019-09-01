@@ -1,3 +1,2 @@
-# TEC
-Trabajos y Documentos TEC
-Simulador de Circuitos Logicos
+# Simulador de Circuitos Logicos
+Proyecto 1
