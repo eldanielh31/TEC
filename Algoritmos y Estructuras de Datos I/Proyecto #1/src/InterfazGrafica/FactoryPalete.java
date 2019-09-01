@@ -25,6 +25,9 @@ public class FactoryPalete {
         else if (t==TypeComponent.XOR){
             return new XOR(new Image("ImageComponents/XOR.jpg"),0,0);
         }
+        else if(t==TypeComponent.NOT){
+            return new NOT(new Image("ImageComponents/NOT.jpg"),0,0);
+        }
         else{
             return new Componente(null,0,0);
         }

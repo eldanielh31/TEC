@@ -6,13 +6,11 @@ import javafx.scene.Cursor;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.*;
 import javafx.scene.paint.ImagePattern;
-import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
 
 public class Eventos {
 
     private static Rectangle rectangle;
-    private static Circle circle;
     private static double orgSceneX,orgSceneY;
     private static double orgTranslateX,orgTranslateY;
 
@@ -25,7 +23,7 @@ public class Eventos {
     }
 
     private static void DroppedAux(DragEvent e,ImageView i){
-       rectangle=new Rectangle(50,50);
+       rectangle=new Rectangle(50,40);
        rectangle.setFill(new ImagePattern(i.getImage()));
        rectangle.setCursor(Cursor.MOVE);
        rectangle.setX(e.getSceneX());
@@ -39,17 +37,26 @@ public class Eventos {
     public static final void Dropped(DragEvent e){
         System.out.println(e.getDragboard().getString());
         if (e.getDragboard().getString().equals(AND.Name)) {
-            Eventos.DroppedAux(e,RootMain.and.getImage()); }
+            Eventos.DroppedAux(e,RootMain.and.getImage());
+            RootMain.AreaText.appendText("Agrega componente AND"+"\n");}
         if (e.getDragboard().getString().equals(NAND.Name)){
-            Eventos.DroppedAux(e,RootMain.nand.getImage()); }
+            Eventos.DroppedAux(e,RootMain.nand.getImage());
+            RootMain.AreaText.appendText("Agrega componente NAND"+"\n");}
         if (e.getDragboard().getString().equals(OR.Name)){
-            Eventos.DroppedAux(e,RootMain.or.getImage()); }
+            Eventos.DroppedAux(e,RootMain.or.getImage());
+            RootMain.AreaText.appendText("Agrega componente OR"+"\n");}
         if (e.getDragboard().getString().equals(XOR.Name)){
-            Eventos.DroppedAux(e,RootMain.xor.getImage()); }
+            Eventos.DroppedAux(e,RootMain.xor.getImage());
+            RootMain.AreaText.appendText("Agrega componente XOR"+"\n");}
         if (e.getDragboard().getString().equals(NOR.Name)){
-            Eventos.DroppedAux(e,RootMain.nor.getImage()); }
+            Eventos.DroppedAux(e,RootMain.nor.getImage());
+            RootMain.AreaText.appendText("Agrega componente NOR"+"\n");}
         if (e.getDragboard().getString().equals(XNOR.Name)){
-            Eventos.DroppedAux(e,RootMain.xnor.getImage()); }
+            Eventos.DroppedAux(e,RootMain.xnor.getImage());
+            RootMain.AreaText.appendText("Agrega componente XNOR"+"\n");}
+        if (e.getDragboard().getString().equals(NOT.Name)){
+            Eventos.DroppedAux(e,RootMain.not.getImage());
+            RootMain.AreaText.appendText("Agrega componente NOT"+"\n"); }
 
         System.out.println("Dropped");
         System.out.println(e.getSceneX());

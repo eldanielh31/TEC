@@ -11,4 +11,14 @@ public class NOR extends Componente implements Component{
     public NOR(javafx.scene.image.Image image, int entrada1, int entrada2) {
         super(image, entrada1, entrada2);
     }
+
+    public int getSalida() {
+        if (Entrada1 == 0 && Entrada2==0){
+            return 1;
+        }
+        else{
+            return 0;
+        }
+    }
+
 }

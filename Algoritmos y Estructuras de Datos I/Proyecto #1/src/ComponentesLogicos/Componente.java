@@ -15,7 +15,6 @@ public class Componente implements Component{
         Entrada2 = entrada2;
     }
 
-
     @Override
     public void setPrimeraEntrada(int entrada) {
         this.Entrada1=entrada;

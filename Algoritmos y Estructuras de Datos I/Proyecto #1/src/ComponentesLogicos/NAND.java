@@ -10,5 +10,15 @@ public class NAND extends Componente implements Component{
     public NAND(javafx.scene.image.Image image, int entrada1, int entrada2) {
         super(image, entrada1, entrada2);
     }
+
+    public int getSalida() {
+        if (Entrada1 == 1 && Entrada2==1){
+            return 0;
+        }
+        else{
+            return 1;
+        }
+    }
+
 }
 

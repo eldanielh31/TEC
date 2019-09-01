@@ -6,13 +6,14 @@ import javafx.event.EventHandler;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.control.ScrollPane;
+import javafx.scene.control.TextArea;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.*;
 import javafx.scene.layout.*;
 import javafx.stage.Stage;
 
-
 public class RootMain extends Application {
+    public static final TextArea AreaText=new TextArea();
     public static final Group Group=new Group();
     public static final Pane Centro=new Pane(Group);
     private VBox CompLog;
@@ -22,6 +23,7 @@ public class RootMain extends Application {
     public static  ImageView XORI;
     public static  ImageView NORI;
     public static ImageView XNORI;
+    public static ImageView NOTI;
 
 
     public static void main(String [] arg){
@@ -31,7 +33,7 @@ public class RootMain extends Application {
     @Override
     public void start(Stage primaryStage){
 
-        primaryStage.setTitle("Simulador de Circuitos Logicos");
+        primaryStage.setTitle("Simulador de Circuitos Lógicos");
 
         //Creando imagenes en un array
         ImageView [] Imagenes={NORI=nor.getImage(),
@@ -39,8 +41,9 @@ public class RootMain extends Application {
         NANDI=nand.getImage(),
         ORI=or.getImage(),
         XNORI=xnor.getImage(),
-        ANDI=and.getImage()};
-        String[] Names={NOR.Name,XOR.Name,NAND.Name,OR.Name,XNOR.Name,AND.Name};
+        ANDI=and.getImage(),
+        NOTI=not.getImage()};
+        String[] Names={NOR.Name,XOR.Name,NAND.Name,OR.Name,XNOR.Name,AND.Name,NOT.Name};
         int a=0;
         for (ImageView x:Imagenes){
             int finalA = a;
@@ -52,17 +55,11 @@ public class RootMain extends Application {
         a++; }
 
         //Componentes del border central
-        //VBox vBox = new VBox();
-        //Centro.setContent(vBox);
         Centro.setOnDragOver(new EventHandler<DragEvent>() {
             @Override
             public void handle(DragEvent event) {
-                event.acceptTransferModes(TransferMode.MOVE);
-                System.out.println(event.getX());
-                System.out.println(event.getSceneX());
-            }
+                event.acceptTransferModes(TransferMode.COPY_OR_MOVE); }
         });
-
         Centro.setOnDragDropped(new EventHandler<DragEvent>() {
             @Override
             public void handle(DragEvent event) {
@@ -71,21 +68,20 @@ public class RootMain extends Application {
         });
 
         //Componentes del border derecho
-        CompLog=new VBox(ANDI,NANDI,ORI,NORI,XORI,XNORI);
+        CompLog=new VBox(ANDI,NANDI,ORI,NORI,XORI,XNORI,NOTI);
         ScrollPane Derecha=new ScrollPane(CompLog);
 
         //Creacion del border pane y colocacion de componentes
         BorderPane borderPane=new BorderPane();
         borderPane.setCenter(Centro);
         borderPane.setRight(Derecha);
-
+        borderPane.setBottom(AreaText);
 
         //Creacion de la escena principal e iniciar el root
         Scene scene = new Scene(borderPane, 1100, 700);
         primaryStage.setResizable(false);
         primaryStage.setScene(scene);
         primaryStage.show();
-
     }
     //Creacion de los operadores disponibles en la paleta
     public static final NAND nand= (NAND) new FactoryPalete().ComponentFactory(TypeComponent.NAND);
@@ -94,4 +90,5 @@ public class RootMain extends Application {
     public static final NOR nor= (NOR)new FactoryPalete().ComponentFactory(TypeComponent.NOR);
     public static final XNOR xnor= (XNOR)new FactoryPalete().ComponentFactory(TypeComponent.XNOR);
     public static final AND and = (AND)new FactoryPalete().ComponentFactory(TypeComponent.AND);
+    public static final NOT not=(NOT) new FactoryPalete().ComponentFactory(TypeComponent.NOT);
 }
