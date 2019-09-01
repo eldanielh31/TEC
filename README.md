@@ -1,2 +1,2 @@
-# Simulador de Circuitos Logicos
+# Simulador de Circuitos Lógicos
 Proyecto 1
