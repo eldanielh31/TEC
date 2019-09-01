@@ -1,9 +1,20 @@
 package ComponentesLogicos;
 
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+
 public class Componente implements Component{
 
-    private int Entrada1;
-    private int Entrada2;
+    private Image Image;
+    protected int Entrada1;
+    protected int Entrada2;
+
+    public Componente(javafx.scene.image.Image image, int entrada1, int entrada2) {
+        Image = image;
+        Entrada1 = entrada1;
+        Entrada2 = entrada2;
+    }
+
 
     @Override
     public void setPrimeraEntrada(int entrada) {
@@ -18,5 +29,12 @@ public class Componente implements Component{
     @Override
     public int getSalida() {
         return 0;
+    }
+
+    public ImageView getImage() {
+        ImageView and = new ImageView(Image);
+        and.setFitWidth(70);
+        and.setFitHeight(50);
+        return and;
     }
 }

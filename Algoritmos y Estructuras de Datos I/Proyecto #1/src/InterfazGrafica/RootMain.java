@@ -2,16 +2,16 @@ package InterfazGrafica;
 
 import ComponentesLogicos.*;
 import javafx.application.Application;
-import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
+import javafx.scene.canvas.Canvas;
 import javafx.scene.control.ScrollPane;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.*;
-import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.VBox;
+import javafx.scene.layout.*;
 import javafx.stage.Stage;
+
 
 public class RootMain extends Application {
     private VBox CompLog;
@@ -26,57 +26,78 @@ public class RootMain extends Application {
 
         //Creacion de los operadores disponibles en la paleta
         AND and = (AND)new FactoryPalete().ComponentFacade(TypeComponent.AND);
-        final ImageView AND=and.getImage();
+        final ImageView ANDI=and.getImage();
 
-
-        AND.setOnDragDetected(new EventHandler<MouseEvent>() {
+        ANDI.setOnDragDetected(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-                Dragboard db=AND.startDragAndDrop(TransferMode.ANY);
+                System.out.println("Drag");
+                Dragboard db=ANDI.startDragAndDrop(TransferMode.ANY);
 
                 ClipboardContent content=new ClipboardContent();
-                content.putString("Hola");
+                content.putString(AND.Name);
                 db.setContent(content);
-
                 event.consume();
+            }
+        });
+
+        ANDI.setOnDragDropped(new EventHandler<DragEvent>() {
+            @Override
+            public void handle(DragEvent event) {
+                System.out.println("Dropped");
             }
         });
 
 
         NAND nand= (NAND)new FactoryPalete().ComponentFacade(TypeComponent.NAND);
-        final ImageView NAND=nand.getImage();
+        final ImageView NANDI=nand.getImage();
 
         OR or= (OR) new FactoryPalete().ComponentFacade(TypeComponent.OR);
-        final ImageView OR=or.getImage();
+        final ImageView ORI=or.getImage();
 
         XOR xor= (XOR)new FactoryPalete().ComponentFacade(TypeComponent.XOR);
-        final ImageView XOR=xor.getImage();
+        final ImageView XORI=xor.getImage();
 
         NOR nor= (NOR)new FactoryPalete().ComponentFacade(TypeComponent.NOR);
-        final ImageView NOR=nor.getImage();
+        final ImageView NORI=nor.getImage();
 
         XNOR xnor= (XNOR)new FactoryPalete().ComponentFacade(TypeComponent.XNOR);
-        final ImageView XNOR=xnor.getImage();
+        final ImageView XNORI=xnor.getImage();
 
 
-        //Boton de prueba
-        Button button=new Button("Hola");
-        button.setOnAction(new EventHandler<ActionEvent>() {
-            @Override public void handle(ActionEvent e) {
-                Componente and = new FactoryPalete().ComponentFacade(TypeComponent.AND);
-                and.setPrimeraEntrada(1);
-                and.setSegundaEntrada(1);
-                System.out.println(and.getSalida());
+        //Componentes del border central
+
+        //VBox vBox = new VBox();
+        Pane Centro=new Pane();
+        //Centro.setContent(vBox);
+
+        Centro.setOnDragOver(new EventHandler<DragEvent>() {
+            @Override
+            public void handle(DragEvent event) {
+                event.acceptTransferModes(TransferMode.MOVE);
+                System.out.println("Apunto de soltar");
             }
         });
 
-        //Componentes del border central
-        VBox vBox = new VBox();
-        ScrollPane Centro=new ScrollPane();
-        Centro.setContent(vBox);
+        Centro.setOnDragDropped(new EventHandler<DragEvent>() {
+            @Override
+            public void handle(DragEvent event) {
+                System.out.println(event.getDragboard().getString());
+                if (event.getDragboard().getString().equals(AND.Name)) {
+                    System.out.println("Hola");
+                    StackPane x=new StackPane(and.getImage());
+                    x.setPrefSize(event.getSceneX(),event.getSceneY());
+                    Centro.getChildren().add(x);
+                }
+
+                System.out.println("Dropped");
+                System.out.println(event.getSceneX());
+                System.out.println(event.getSceneY());
+            }
+        });
 
         //Componentes del border derecho
-        CompLog=new VBox(button,AND,NAND,OR,NOR,XOR,XNOR);
+        CompLog=new VBox(ANDI,NANDI,ORI,NORI,XORI,XNORI);
         ScrollPane Derecha=new ScrollPane(CompLog);
 
         //Creacion del border pane y colocacion de componentes
