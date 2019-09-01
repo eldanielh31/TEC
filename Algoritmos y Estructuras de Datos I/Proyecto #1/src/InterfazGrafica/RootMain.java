@@ -3,21 +3,19 @@ package InterfazGrafica;
 import ComponentesLogicos.*;
 import javafx.application.Application;
 import javafx.event.EventHandler;
+import javafx.scene.Group;
 import javafx.scene.Scene;
-import javafx.scene.canvas.Canvas;
 import javafx.scene.control.ScrollPane;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.*;
 import javafx.scene.layout.*;
 import javafx.stage.Stage;
 
-import java.awt.image.ImagingOpException;
-import java.text.Normalizer;
-
 
 public class RootMain extends Application {
-    public static final Pane Centro=new Pane();
+    BorderPane borderPane=new BorderPane();
+    public static final Group Group=new Group();
+    public static final Pane Centro=new Pane(Group);
     private VBox CompLog;
     public static ImageView ANDI;
     public static  ImageView NANDI;
@@ -33,6 +31,7 @@ public class RootMain extends Application {
 
     @Override
     public void start(Stage primaryStage){
+
         primaryStage.setTitle("Simulador de Circuitos Logicos");
 
         //Creando imagenes en un array
@@ -55,17 +54,15 @@ public class RootMain extends Application {
         a++;
         }
 
-
-
         //Componentes del border central
         //VBox vBox = new VBox();
         //Centro.setContent(vBox);
-
         Centro.setOnDragOver(new EventHandler<DragEvent>() {
             @Override
             public void handle(DragEvent event) {
                 event.acceptTransferModes(TransferMode.MOVE);
-                System.out.println("Apunto de soltar");
+                System.out.println(event.getX());
+                System.out.println(event.getSceneX());
             }
         });
 
@@ -81,9 +78,10 @@ public class RootMain extends Application {
         ScrollPane Derecha=new ScrollPane(CompLog);
 
         //Creacion del border pane y colocacion de componentes
-        BorderPane borderPane=new BorderPane();
+
         borderPane.setCenter(Centro);
         borderPane.setRight(Derecha);
+
 
         //Creacion de la escena principal e iniciar el root
         Scene scene = new Scene(borderPane, 1100, 700);
