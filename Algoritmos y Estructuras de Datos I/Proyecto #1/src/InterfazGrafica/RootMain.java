@@ -13,7 +13,6 @@ import javafx.stage.Stage;
 
 
 public class RootMain extends Application {
-    BorderPane borderPane=new BorderPane();
     public static final Group Group=new Group();
     public static final Pane Centro=new Pane(Group);
     private VBox CompLog;
@@ -49,10 +48,8 @@ public class RootMain extends Application {
                 @Override
                 public void handle(MouseEvent event) {
                     Eventos.DragDetected(event,x,Names[finalA]);
-                }
-            });
-        a++;
-        }
+                }});
+        a++; }
 
         //Componentes del border central
         //VBox vBox = new VBox();
@@ -78,7 +75,7 @@ public class RootMain extends Application {
         ScrollPane Derecha=new ScrollPane(CompLog);
 
         //Creacion del border pane y colocacion de componentes
-
+        BorderPane borderPane=new BorderPane();
         borderPane.setCenter(Centro);
         borderPane.setRight(Derecha);
 

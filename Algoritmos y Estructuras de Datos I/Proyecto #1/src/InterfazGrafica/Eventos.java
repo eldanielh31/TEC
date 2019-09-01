@@ -5,7 +5,7 @@ import javafx.event.EventHandler;
 import javafx.scene.Cursor;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.*;
-import javafx.scene.paint.Color;
+import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
 
@@ -13,8 +13,8 @@ public class Eventos {
 
     private static Rectangle rectangle;
     private static Circle circle;
-    static double orgSceneX,orgSceneY;
-    static double orgTranslateX,orgTranslateY;
+    private static double orgSceneX,orgSceneY;
+    private static double orgTranslateX,orgTranslateY;
 
    public static final void DragDetected(MouseEvent e, ImageView Comp, String Name){
         Dragboard db= Comp.startDragAndDrop(TransferMode.ANY);
@@ -26,15 +26,13 @@ public class Eventos {
 
     private static void DroppedAux(DragEvent e,ImageView i){
        rectangle=new Rectangle(50,50);
+       rectangle.setFill(new ImagePattern(i.getImage()));
+       rectangle.setCursor(Cursor.MOVE);
+       rectangle.setX(e.getSceneX());
+       rectangle.setY(e.getSceneY());
+       rectangle.setOnMousePressed(RectangleOnMousePressedEventHandler);
+       rectangle.setOnMouseDragged(RectangleOnMouseDraggedEventHandler);
 
-       circle=new Circle(50, Color.GREEN);
-       circle.setCursor(Cursor.MOVE);
-       circle.setCenterX(e.getSceneX());
-       circle.setCenterY(e.getSceneY());
-       circle.setOnMousePressed(circleOnMousePressedEventHandler);
-       circle.setOnMouseDragged(circleOnMouseDraggedEventHandler);
-
-       RootMain.Group.getChildren().add(circle);
        RootMain.Group.getChildren().add(rectangle);
     }
 
@@ -58,20 +56,19 @@ public class Eventos {
         System.out.println(e.getSceneY());
     }
 
-
-    static EventHandler<MouseEvent> circleOnMousePressedEventHandler =
+    private static EventHandler<MouseEvent> RectangleOnMousePressedEventHandler =
             new EventHandler<MouseEvent>() {
 
                 @Override
                 public void handle(MouseEvent t) {
                     orgSceneX = t.getSceneX();
                     orgSceneY = t.getSceneY();
-                    orgTranslateX = ((Circle)(t.getSource())).getTranslateX();
-                    orgTranslateY = ((Circle)(t.getSource())).getTranslateY();
+                    orgTranslateX = ((Rectangle)(t.getSource())).getTranslateX();
+                    orgTranslateY = ((Rectangle)(t.getSource())).getTranslateY();
                 }
             };
 
-    static EventHandler<MouseEvent> circleOnMouseDraggedEventHandler =
+    private static EventHandler<MouseEvent> RectangleOnMouseDraggedEventHandler =
             new EventHandler<MouseEvent>() {
 
                 @Override
@@ -81,12 +78,10 @@ public class Eventos {
                     double newTranslateX = orgTranslateX + offsetX;
                     double newTranslateY = orgTranslateY + offsetY;
 
-                    ((Circle)(t.getSource())).setTranslateX(newTranslateX);
-                    ((Circle)(t.getSource())).setTranslateY(newTranslateY);
+                    ((Rectangle)(t.getSource())).setTranslateX(newTranslateX);
+                    ((Rectangle)(t.getSource())).setTranslateY(newTranslateY);
                 }
             };
-
-
 }
 
 
