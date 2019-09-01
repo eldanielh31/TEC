@@ -17,6 +17,7 @@ import java.text.Normalizer;
 
 
 public class RootMain extends Application {
+    public static final Pane Centro=new Pane();
     private VBox CompLog;
     public static ImageView ANDI;
     public static  ImageView NANDI;
@@ -31,7 +32,7 @@ public class RootMain extends Application {
     }
 
     @Override
-    public void start(Stage primaryStage) throws Exception {
+    public void start(Stage primaryStage){
         primaryStage.setTitle("Simulador de Circuitos Logicos");
 
         //Creando imagenes en un array
@@ -41,7 +42,7 @@ public class RootMain extends Application {
         ORI=or.getImage(),
         XNORI=xnor.getImage(),
         ANDI=and.getImage()};
-        String[] Names={NOR.Name,XNOR.Name,NAND.Name,OR.Name,XNOR.Name,AND.Name};
+        String[] Names={NOR.Name,XOR.Name,NAND.Name,OR.Name,XNOR.Name,AND.Name};
         int a=0;
         for (ImageView x:Imagenes){
             int finalA = a;
@@ -53,10 +54,11 @@ public class RootMain extends Application {
             });
         a++;
         }
-        //Componentes del border central
 
+
+
+        //Componentes del border central
         //VBox vBox = new VBox();
-        Pane Centro=new Pane();
         //Centro.setContent(vBox);
 
         Centro.setOnDragOver(new EventHandler<DragEvent>() {
@@ -70,17 +72,7 @@ public class RootMain extends Application {
         Centro.setOnDragDropped(new EventHandler<DragEvent>() {
             @Override
             public void handle(DragEvent event) {
-                System.out.println(event.getDragboard().getString());
-                if (event.getDragboard().getString().equals(AND.Name)) {
-                    System.out.println("Hola");
-                    StackPane x=new StackPane(and.getImage());
-                    x.setPrefSize(event.getSceneX(),event.getSceneY());
-                    Centro.getChildren().add(x);
-                }
-
-                System.out.println("Dropped");
-                System.out.println(event.getSceneX());
-                System.out.println(event.getSceneY());
+                Eventos.Dropped(event);
             }
         });
 
@@ -101,10 +93,10 @@ public class RootMain extends Application {
 
     }
     //Creacion de los operadores disponibles en la paleta
-    NAND nand= (NAND) new FactoryPalete().ComponentFactory(TypeComponent.NAND);
-    OR or= (OR) new FactoryPalete().ComponentFactory(TypeComponent.OR);
-    XOR xor= (XOR)new FactoryPalete().ComponentFactory(TypeComponent.XOR);
-    NOR nor= (NOR)new FactoryPalete().ComponentFactory(TypeComponent.NOR);
-    XNOR xnor= (XNOR)new FactoryPalete().ComponentFactory(TypeComponent.XNOR);
-    AND and = (AND)new FactoryPalete().ComponentFactory(TypeComponent.AND);
+    public static final NAND nand= (NAND) new FactoryPalete().ComponentFactory(TypeComponent.NAND);
+    public static final OR or= (OR) new FactoryPalete().ComponentFactory(TypeComponent.OR);
+    public static final XOR xor= (XOR)new FactoryPalete().ComponentFactory(TypeComponent.XOR);
+    public static final NOR nor= (NOR)new FactoryPalete().ComponentFactory(TypeComponent.NOR);
+    public static final XNOR xnor= (XNOR)new FactoryPalete().ComponentFactory(TypeComponent.XNOR);
+    public static final AND and = (AND)new FactoryPalete().ComponentFactory(TypeComponent.AND);
 }
