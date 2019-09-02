@@ -13,8 +13,6 @@ import javafx.scene.input.*;
 import javafx.scene.layout.*;
 import javafx.stage.Stage;
 
-import java.awt.*;
-
 
 /**
  * Esta clase funciona como ventana principal de la aplicacion.
@@ -34,7 +32,6 @@ public class RootMain extends Application {
     public static  ImageView NORI;
     public static ImageView XNORI;
     public static ImageView NOTI;
-
 
     /**
      * Este metodo inicia la aplicacion.

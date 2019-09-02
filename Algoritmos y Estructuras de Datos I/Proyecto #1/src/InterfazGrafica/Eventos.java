@@ -16,13 +16,22 @@ import javafx.scene.shape.Rectangle;
 import java.util.List;
 import java.util.Optional;
 
+/**
+ * Esta clase funciona como un refactor de eventos.
+ */
 public class Eventos {
     
     private static Rectangle rectangle;
     private static double orgSceneX,orgSceneY;
     private static double orgTranslateX,orgTranslateY;
 
-
+    /**
+     * Este metodo gestiona el drag de la imagen
+     * que se encuentra en la paleta.
+     * @param e - Evento de mouse al mover la imagen.
+     * @param Comp - Imagen del componente.
+     * @param Name - Nombre del componente que se está moviendo.
+     */
    public static final void DragDetected(MouseEvent e, ImageView Comp, String Name){
         Dragboard db= Comp.startDragAndDrop(TransferMode.ANY);
         ClipboardContent content=new ClipboardContent();
@@ -31,6 +40,13 @@ public class Eventos {
         e.consume();
     }
 
+    /**
+     * Este metodo es un auxiliar del evento drop de la imagen.
+     * En este se coloca la imagen en un rectangulo para la
+     * implementacion en el pane principal.
+     * @param e - Evento tipo drag.
+     * @param i - Imagen del componente.
+     */
     private static void DroppedAux(DragEvent e,ImageView i){
        rectangle=new Rectangle(50,40);
        rectangle.setFill(new ImagePattern(i.getImage()));
@@ -43,6 +59,12 @@ public class Eventos {
        RootMain.Group.getChildren().add(rectangle);
     }
 
+    /**
+     * Este metodo gestiona el drop de la imagen del componente.
+     * Identifica que componente se está moviendo, imprime en un TextArea
+     * e introduce en una lista enlazada cada componente.
+     * @param e - Evento tipo DragEvent.
+     */
     public static final void Dropped(DragEvent e){
         if (e.getDragboard().getString().equals(AND.Name)) {
             Eventos.DroppedAux(e,RootMain.and.getImage());
@@ -96,9 +118,9 @@ public class Eventos {
         System.out.println(RootMain.Lista.Tamano());
     }
 
-
-
-
+    /**
+     * Evento al precionar el rectangulo con la imagen.
+     */
     private static EventHandler<MouseEvent> RectangleOnMousePressedEventHandler =
             new EventHandler<MouseEvent>() {
 
@@ -110,7 +132,9 @@ public class Eventos {
                     orgTranslateY = ((Rectangle)(t.getSource())).getTranslateY();
                 }
             };
-
+    /**
+     * Evento al mover el rectangulo con la imagen.
+     */
     private static EventHandler<MouseEvent> RectangleOnMouseDraggedEventHandler =
             new EventHandler<MouseEvent>() {
 

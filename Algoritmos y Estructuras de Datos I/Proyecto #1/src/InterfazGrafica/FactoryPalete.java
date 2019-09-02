@@ -3,9 +3,16 @@ package InterfazGrafica;
 import ComponentesLogicos.*;
 import javafx.scene.image.Image;
 
-
+/**
+ * Esta clase es un factory de las clases componente.
+ */
 public class FactoryPalete {
 
+    /**
+     * Metodo static que selecciona e instancia cada clase, segun el componente.
+     * @param t - Enum del tipo de componente.
+     * @return - Instancia de la clase componente.
+     */
     public static Componente ComponentFactory(TypeComponent t){
         if (t==TypeComponent.AND){
             return new AND(new Image("ImageComponents/AND.jpg"),0,0);
