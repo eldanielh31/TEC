@@ -13,13 +13,21 @@ import javafx.scene.input.*;
 import javafx.scene.layout.*;
 import javafx.stage.Stage;
 
-
 /**
  * Esta clase funciona como ventana principal de la aplicacion.
  * En ella se encuentra todos los componentes de la clase principal
  */
 public class RootMain extends Application {
     //Variables necesarias de clase
+    static String[] Names={NOR.Name,XOR.Name,NAND.Name,OR.Name,XNOR.Name,AND.Name,NOT.Name};
+    private ImageView [] Imagenes={NORI=nor.getImage(),
+            XORI=xor.getImage(),
+            NANDI=nand.getImage(),
+            ORI=or.getImage(),
+            XNORI=xnor.getImage(),
+            ANDI=and.getImage(),
+            NOTI=not.getImage()};
+
     public static ListaEnlazada Lista=new ListaEnlazada();
     public static final TextArea AreaText=new TextArea();
     public static final Group Group=new Group();
@@ -53,16 +61,10 @@ public class RootMain extends Application {
         primaryStage.setTitle("Simulador de Circuitos Lógicos");
 
         //Creando imagenes en un array
-        ImageView [] Imagenes={NORI=nor.getImage(),
-        XORI=xor.getImage(),
-        NANDI=nand.getImage(),
-        ORI=or.getImage(),
-        XNORI=xnor.getImage(),
-        ANDI=and.getImage(),
-        NOTI=not.getImage()};
+
 
         //Asignar a cada imagen su evento
-        String[] Names={NOR.Name,XOR.Name,NAND.Name,OR.Name,XNOR.Name,AND.Name,NOT.Name};
+
         int a=0;
         for (ImageView x:Imagenes){
             int finalA = a;
@@ -82,7 +84,7 @@ public class RootMain extends Application {
         Centro.setOnDragDropped(new EventHandler<DragEvent>() {
             @Override
             public void handle(DragEvent event) {
-                Eventos.Dropped(event);
+                Eventos.Dropped(event,Imagenes);
             }
         });
 
@@ -103,12 +105,13 @@ public class RootMain extends Application {
         primaryStage.setScene(scene);
         primaryStage.show();
     }
+
     //Creacion de los operadores disponibles en la paleta
-    public static final NAND nand= (NAND) new FactoryPalete().ComponentFactory(TypeComponent.NAND);
-    public static final OR or= (OR) new FactoryPalete().ComponentFactory(TypeComponent.OR);
-    public static final XOR xor= (XOR)new FactoryPalete().ComponentFactory(TypeComponent.XOR);
-    public static final NOR nor= (NOR)new FactoryPalete().ComponentFactory(TypeComponent.NOR);
-    public static final XNOR xnor= (XNOR)new FactoryPalete().ComponentFactory(TypeComponent.XNOR);
-    public static final AND and = (AND)new FactoryPalete().ComponentFactory(TypeComponent.AND);
-    public static final NOT not=(NOT) new FactoryPalete().ComponentFactory(TypeComponent.NOT);
+    public static final NAND nand= (NAND) new FactoryPalete().ComponentFactory(NAND.Name);
+    public static final OR or= (OR) new FactoryPalete().ComponentFactory(OR.Name);
+    public static final XOR xor= (XOR)new FactoryPalete().ComponentFactory(XOR.Name);
+    public static final NOR nor= (NOR)new FactoryPalete().ComponentFactory(NOR.Name);
+    public static final XNOR xnor= (XNOR)new FactoryPalete().ComponentFactory(XNOR.Name);
+    public static final AND and = (AND)new FactoryPalete().ComponentFactory(AND.Name);
+    public static final NOT not=(NOT) new FactoryPalete().ComponentFactory(NOT.Name);
 }
