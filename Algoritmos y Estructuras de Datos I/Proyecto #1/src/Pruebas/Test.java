@@ -14,7 +14,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
-public class Prueba3 extends Application {
+public class Test extends Application {
 
     private Pane root = new Pane();
     private DoubleProperty mouseX = new SimpleDoubleProperty();
