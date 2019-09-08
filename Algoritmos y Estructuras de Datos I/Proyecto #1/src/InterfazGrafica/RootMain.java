@@ -2,6 +2,7 @@ package InterfazGrafica;
 
 import ComponentesLogicos.*;
 import Lista.ListaEnlazada;
+import com.sun.prism.paint.Color;
 import javafx.application.Application;
 import javafx.event.EventHandler;
 import javafx.scene.Group;
@@ -12,6 +13,8 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.*;
 import javafx.scene.layout.*;
 import javafx.stage.Stage;
+
+import java.awt.*;
 
 /**
  * Esta clase funciona como ventana principal de la aplicacion.
@@ -94,6 +97,7 @@ public class RootMain extends Application {
 
         //Creacion del border pane y colocacion de componentes
         AreaText.setEditable(false);
+        Centro.setStyle("-fx-background-color: white");
         BorderPane borderPane=new BorderPane();
         borderPane.setCenter(Centro);
         borderPane.setRight(Derecha);

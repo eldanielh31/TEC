@@ -1,17 +1,17 @@
 package InterfazGrafica;
 
 import javafx.event.EventHandler;
-import javafx.scene.Cursor;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.*;
-import javafx.scene.paint.ImagePattern;
+import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
 
 /**
  * Esta clase funciona como un refactor de eventos.
  */
 public class Eventos {
-    
+
+    private static Circular output, outputII, input;
     private static Rectangle rectangle;
     private static double orgSceneX,orgSceneY;
     private static double orgTranslateX,orgTranslateY;
@@ -39,15 +39,11 @@ public class Eventos {
      * @param i - Imagen del componente.
      */
     private static void DroppedAux(DragEvent e,ImageView i){
-       rectangle=new Rectangle(50,40);
-       rectangle.setFill(new ImagePattern(i.getImage()));
-       rectangle.setCursor(Cursor.MOVE);
-       rectangle.setX(e.getSceneX());
-       rectangle.setY(e.getSceneY());
-       rectangle.setOnMousePressed(RectangleOnMousePressedEventHandler);
-       rectangle.setOnMouseDragged(RectangleOnMouseDraggedEventHandler);
-
-       RootMain.Group.getChildren().add(rectangle);
+        output=new Circular(e.getSceneX(), e.getSceneY()+10);
+        outputII=new Circular(e.getSceneX(), e.getSceneY()+30);
+        input=new Circular(e.getSceneX()+50,e.getSceneY()+20);
+        rectangle=new Rectangular(50,40,i,e,output,outputII,input);
+        RootMain.Group.getChildren().addAll(rectangle,output,outputII,input);
     }
 
     /**
@@ -70,38 +66,6 @@ public class Eventos {
             cont++;
         }
     }
-
-    /**
-     * Evento al precionar el rectangulo con la imagen.
-     */
-    private static EventHandler<MouseEvent> RectangleOnMousePressedEventHandler =
-            new EventHandler<MouseEvent>() {
-
-                @Override
-                public void handle(MouseEvent t) {
-                    orgSceneX = t.getSceneX();
-                    orgSceneY = t.getSceneY();
-                    orgTranslateX = ((Rectangle)(t.getSource())).getTranslateX();
-                    orgTranslateY = ((Rectangle)(t.getSource())).getTranslateY();
-                }
-            };
-    /**
-     * Evento al mover el rectangulo con la imagen.
-     */
-    private static EventHandler<MouseEvent> RectangleOnMouseDraggedEventHandler =
-            new EventHandler<MouseEvent>() {
-
-                @Override
-                public void handle(MouseEvent t) {
-                    double offsetX = t.getSceneX() - orgSceneX;
-                    double offsetY = t.getSceneY() - orgSceneY;
-                    double newTranslateX = orgTranslateX + offsetX;
-                    double newTranslateY = orgTranslateY + offsetY;
-
-                    ((Rectangle)(t.getSource())).setTranslateX(newTranslateX);
-                    ((Rectangle)(t.getSource())).setTranslateY(newTranslateY);
-                }
-            };
 }
 
 
