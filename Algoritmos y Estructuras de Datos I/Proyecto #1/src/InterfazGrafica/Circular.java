@@ -1,18 +1,33 @@
 package InterfazGrafica;
 
+import com.sun.tools.javadoc.Start;
+import javafx.event.EventHandler;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
+import javafx.scene.shape.Line;
 import javafx.scene.shape.Shape;
 
-
-public class Circular extends Circle {
-
+public class Circular extends Circle{
+    private static boolean Draw;
+    private static double StartX, StartY;
+    private Line line;
+    private boolean HaveLine;
+    //Variables para mover el circulo
     private double orgSceneX,orgSceneY;
     private double orgTranslateX,orgTranslateY;
 
     public Circular(double X,double Y) {
-        super(X,Y,5,Color.BLACK);
+        super(X, Y, 5, Color.BLACK);
+        Draw=false;
+        HaveLine=false;
+
+        this.setOnMousePressed(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent e) {
+                Click(e);
+            }
+        });
     }
 
 
@@ -22,7 +37,6 @@ public class Circular extends Circle {
         orgSceneY = t.getSceneY();
         orgTranslateX = ((Shape)(t.getSource())).getTranslateX();
         orgTranslateY = ((Shape)(t.getSource())).getTranslateY();
-
     }
 
     public void Dragged(MouseEvent t){
@@ -36,4 +50,26 @@ public class Circular extends Circle {
 
     }
 
+    public void Click(MouseEvent e){
+        if(HaveLine==false){
+            if (Draw) {
+                line = new Line(StartX, StartY, e.getSceneX(), e.getSceneY());
+                this.setFill(Color.GREEN);
+                RootMain.Group.getChildren().add(line);
+                Draw=false;
+                HaveLine = true;
+            } else {
+                StartX = e.getSceneX();
+                StartY = e.getSceneY();
+                Draw = true;
+                HaveLine=true;
+                this.setFill(Color.RED);
+            }
+        }
+    }
+
+
+    public Line getLine() {
+        return line;
+    }
 }

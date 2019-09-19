@@ -33,5 +33,4 @@ public class AND extends Componente implements Component {
             return 0;
         }
     }
-
 }

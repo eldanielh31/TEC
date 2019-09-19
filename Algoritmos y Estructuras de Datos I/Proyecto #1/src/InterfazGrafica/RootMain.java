@@ -20,6 +20,7 @@ import java.awt.*;
  * Esta clase funciona como ventana principal de la aplicacion.
  * En ella se encuentra todos los componentes de la clase principal
  */
+
 public class RootMain extends Application {
     //Variables necesarias de clase
     static String[] Names={NOR.Name,XOR.Name,NAND.Name,OR.Name,XNOR.Name,AND.Name,NOT.Name};
@@ -31,22 +32,21 @@ public class RootMain extends Application {
             ANDI=and.getImage(),
             NOTI=not.getImage()};
 
-    public static ListaEnlazada Lista=new ListaEnlazada();
-    public static final TextArea AreaText=new TextArea();
-    public static final Group Group=new Group();
-    public static final Pane Centro=new Pane(Group);
-    private VBox CompLog;
-    public static ImageView ANDI;
-    public static  ImageView NANDI;
-    public static  ImageView ORI;
-    public static  ImageView XORI;
-    public static  ImageView NORI;
-    public static ImageView XNORI;
-    public static ImageView NOTI;
+    static ListaEnlazada Lista=new ListaEnlazada();
+    static final TextArea AreaText=new TextArea();
+    static final Group Group=new Group();
+    static final Pane Centro=new Pane(Group);
+    private static ImageView ANDI;
+    private static  ImageView NANDI;
+    private static  ImageView ORI;
+    private static  ImageView XORI;
+    private static  ImageView NORI;
+    private static ImageView XNORI;
+    private static ImageView NOTI;
 
     /**
      * Este metodo inicia la aplicacion.
-     * @param arg
+     * @param arg - argumentos a ejecutar de la pantalla principal.
      */
     public static void main(String [] arg){
         launch(arg);
@@ -62,12 +62,7 @@ public class RootMain extends Application {
     public void start(Stage primaryStage) throws  Exception{
 
         primaryStage.setTitle("Simulador de Circuitos Lógicos");
-
-        //Creando imagenes en un array
-
-
         //Asignar a cada imagen su evento
-
         int a=0;
         for (ImageView x:Imagenes){
             int finalA = a;
@@ -92,8 +87,8 @@ public class RootMain extends Application {
         });
 
         //Componentes del border derecho
-        CompLog=new VBox(ANDI,NANDI,ORI,NORI,XORI,XNORI,NOTI);
-        ScrollPane Derecha=new ScrollPane(CompLog);
+        VBox compLog = new VBox(ANDI, NANDI, ORI, NORI, XORI, XNORI, NOTI);
+        ScrollPane Derecha=new ScrollPane(compLog);
 
         //Creacion del border pane y colocacion de componentes
         AreaText.setEditable(false);
@@ -111,11 +106,11 @@ public class RootMain extends Application {
     }
 
     //Creacion de los operadores disponibles en la paleta
-    public static final NAND nand= (NAND) new FactoryPalete().ComponentFactory(NAND.Name);
-    public static final OR or= (OR) new FactoryPalete().ComponentFactory(OR.Name);
-    public static final XOR xor= (XOR)new FactoryPalete().ComponentFactory(XOR.Name);
-    public static final NOR nor= (NOR)new FactoryPalete().ComponentFactory(NOR.Name);
-    public static final XNOR xnor= (XNOR)new FactoryPalete().ComponentFactory(XNOR.Name);
-    public static final AND and = (AND)new FactoryPalete().ComponentFactory(AND.Name);
-    public static final NOT not=(NOT) new FactoryPalete().ComponentFactory(NOT.Name);
+    private static final NAND nand= (NAND) new FactoryPalete().ComponentFactory(NAND.Name);
+    private static final OR or= (OR) new FactoryPalete().ComponentFactory(OR.Name);
+    private static final XOR xor= (XOR)new FactoryPalete().ComponentFactory(XOR.Name);
+    private static final NOR nor= (NOR)new FactoryPalete().ComponentFactory(NOR.Name);
+    private static final XNOR xnor= (XNOR)new FactoryPalete().ComponentFactory(XNOR.Name);
+    private static final AND and = (AND)new FactoryPalete().ComponentFactory(AND.Name);
+    private static final NOT not=(NOT) new FactoryPalete().ComponentFactory(NOT.Name);
 }

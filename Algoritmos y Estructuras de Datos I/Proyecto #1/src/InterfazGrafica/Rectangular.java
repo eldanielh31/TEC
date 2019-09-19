@@ -5,9 +5,12 @@ import javafx.scene.Cursor;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.DragEvent;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.paint.Color;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
+import javafx.scene.shape.Line;
 import javafx.scene.shape.Rectangle;
+import javafx.scene.shape.Shape;
 
 public class Rectangular extends Rectangle {
     private double orgSceneX,orgSceneY;
@@ -40,9 +43,15 @@ public class Rectangular extends Rectangle {
                     orgSceneY = t.getSceneY();
                     orgTranslateX = ((Rectangle)(t.getSource())).getTranslateX();
                     orgTranslateY = ((Rectangle)(t.getSource())).getTranslateY();
-                    Output.Pressed(t);
-                    OutputII.Pressed(t);
-                    Input.Pressed(t);
+                    if (OutputII!=null) {
+                        Output.Pressed(t);
+                        OutputII.Pressed(t);
+                        Input.Pressed(t);
+                    }
+                    else{
+                        Output.Pressed(t);
+                        Input.Pressed(t);
+                    }
                 }
             };
     /**
@@ -59,11 +68,15 @@ public class Rectangular extends Rectangle {
                     double newTranslateY = orgTranslateY + offsetY;
                     ((Rectangle)(t.getSource())).setTranslateX(newTranslateX);
                     ((Rectangle)(t.getSource())).setTranslateY(newTranslateY);
-                    Output.Dragged(t);
-                    OutputII.Dragged(t);
-                    Input.Dragged(t);
+                    if (OutputII!=null) {
+                        Output.Dragged(t);
+                        OutputII.Dragged(t);
+                        Input.Dragged(t);
+                    }
+                    else {
+                        Output.Dragged(t);
+                        Input.Dragged(t);
+                    }
                 }
             };
-
-
 }
