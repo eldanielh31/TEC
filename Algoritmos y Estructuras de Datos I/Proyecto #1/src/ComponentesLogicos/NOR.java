@@ -16,8 +16,8 @@ public class NOR extends Componente implements Component{
      * @param entrada1 - Input por default.
      * @param entrada2 - Input por default.
      */
-    public NOR(Image image, int entrada1, int entrada2) {
-        super(image, entrada1, entrada2);
+    public NOR(Image image, Componente entrada1, Componente entrada2) {
+        super(image, entrada1, entrada2,Name);
     }
 
         /**
@@ -26,7 +26,7 @@ public class NOR extends Componente implements Component{
      * o true respectivamente.
      */
     public int getSalida() {
-        if (Entrada1 == 0 && Entrada2==0){
+        if (Entrada1.getSalida() == 0 && Entrada2.getSalida()==0){
             return 1;
         }
         else{

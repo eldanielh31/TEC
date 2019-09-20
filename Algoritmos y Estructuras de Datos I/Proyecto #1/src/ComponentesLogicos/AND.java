@@ -15,8 +15,8 @@ public class AND extends Componente implements Component {
      * @param entrada1 - Entrada del input
      * @param entrada2 - Entrada del input
      */
-    public AND(Image image, int entrada1, int entrada2) {
-        super(image, entrada1, entrada2);
+    public AND(Image image, Componente entrada1, Componente entrada2) {
+        super(image,entrada1,entrada2,Name);
 
     }
 
@@ -26,7 +26,7 @@ public class AND extends Componente implements Component {
      * @return - Retorna un int segun su valor de true or false
      */
     public int getSalida() {
-        if (Entrada1 == 1 && Entrada2==1){
+        if (Entrada1.getSalida() == 1 && Entrada2.getSalida()==1){
             return 1;
         }
         else{

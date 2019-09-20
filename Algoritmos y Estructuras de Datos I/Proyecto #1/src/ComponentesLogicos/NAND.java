@@ -16,8 +16,8 @@ public class NAND extends Componente implements Component{
      * @param entrada1 - Entrada por defecto del input.
      * @param entrada2 - Entrada por defecto del input.
      */
-    public NAND(Image image, int entrada1, int entrada2) {
-        super(image, entrada1, entrada2);
+    public NAND(Image image, Componente entrada1, Componente entrada2) {
+        super(image, entrada1, entrada2,Name);
     }
 
     /**
@@ -25,7 +25,7 @@ public class NAND extends Componente implements Component{
      * @return - int que representa true or false.
      */
     public int getSalida() {
-        if (Entrada1 == 1 && Entrada2==1){
+        if (Entrada1.getSalida() == 1 && Entrada2.getSalida()==1){
             return 0;
         }
         else{

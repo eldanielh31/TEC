@@ -16,8 +16,8 @@ public class NOT extends Componente implements Component{
      * @param entrada1 - Entrada por default.
      * @param entrada2 - Entrada por default.
      */
-    public NOT(Image image, int entrada1, int entrada2) {
-        super(image, entrada1, entrada2);
+    public NOT(Image image, Componente entrada1, Componente entrada2) {
+        super(image, entrada1, entrada2,Name);
     }
 
     /**
@@ -27,7 +27,7 @@ public class NOT extends Componente implements Component{
      * respectivamente.
      */
     public int getSalida() {
-        if (Entrada1==1){
+        if (Entrada1.getSalida()==1){
             return 0;
         }
         else{

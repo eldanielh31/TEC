@@ -16,8 +16,8 @@ public class XOR extends Componente implements Component{
      * @param entrada1 - Entrada por default.
      * @param entrada2 - Entrada por default.
      */
-    public XOR(Image image, int entrada1, int entrada2) {
-        super(image, entrada1, entrada2);
+    public XOR(Image image, Componente entrada1, Componente entrada2) {
+        super(image, entrada1, entrada2,Name);
     }
 
     /**
@@ -26,7 +26,7 @@ public class XOR extends Componente implements Component{
      * @return - int 0 o 1, falso o true respectivamente.
      */
     public int getSalida() {
-        if (Entrada1 == Entrada2){
+        if (Entrada1.getSalida() == Entrada2.getSalida()){
             return 0;
         }
         else{
