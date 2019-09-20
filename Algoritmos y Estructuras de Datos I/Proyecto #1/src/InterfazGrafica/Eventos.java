@@ -73,6 +73,14 @@ public class Eventos {
             cont++;
         }
     }
+
+    static void Play(MouseEvent e){
+        for (int x=0;x<RootMain.Lista.Tamano();x++){
+            Componente c=RootMain.Lista.Obtener(x);
+            System.out.println(c.getEntrada1() +""+ c.getEntrada2());
+        }
+    }
+
 }
 
 

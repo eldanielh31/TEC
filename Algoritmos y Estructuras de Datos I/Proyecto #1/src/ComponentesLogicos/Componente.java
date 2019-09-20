@@ -67,6 +67,10 @@ public class Componente implements Component{
         return and;
     }
 
+    public Componente getEntrada2() {
+        return Entrada2;
+    }
+
     public Componente getEntrada1() {
         return Entrada1;
     }

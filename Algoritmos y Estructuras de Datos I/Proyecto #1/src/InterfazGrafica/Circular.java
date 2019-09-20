@@ -11,8 +11,6 @@ import javafx.scene.shape.Shape;
 public class Circular extends Circle{
     private static boolean Draw;
     private static double StartX, StartY;
-    //private static WritableDoubleValue StartX, StartY;
-    //private static DoubleProperty StartX=new SimpleDoubleProperty(), StartY =new SimpleDoubleProperty();
     private String Type;
     private Line line;
     private boolean HaveLine;
@@ -65,56 +63,73 @@ public class Circular extends Circle{
             if (Draw) {
                 if (Component.getID()!=Anterior.getComponente().getID()) {
                     if (!this.Type.equals(Anterior.Type)) {
-                        line = new Line(StartX, StartY, e.getSceneX(), e.getSceneY());
-                        this.setFill(Color.GREEN);
-                        RootMain.AreaText.appendText(Component.getName() + "..." + temp.getName());
-                        RootMain.Group.getChildren().add(line);
-
-                        if (this.Type.equals("input")) {
-                            this.getComponente().setInput(true);
-                            if (Anterior.getComponente().getEntrada1() != null) {
-                                Anterior.getComponente().setSegundaEntrada(this.Component);
-                            } else {
-                                Anterior.getComponente().setPrimeraEntrada(this.Component);
-                            }
-                        } else {
-                            Anterior.getComponente().setInput(true);
-                            if (this.getComponente().getEntrada1() != null) {
-                                this.getComponente().setSegundaEntrada(Anterior.Component);
-                            } else {
-                                this.getComponente().setPrimeraEntrada(Anterior.Component);
-                            }
-                        }
-
-                        Enlazado = Anterior;
-                        Anterior.Enlazado = this;
-                        Anterior = null;
-                        temp = null;
-                        Draw = false;
-                        HaveLine = true;
+                        DrawLine(e);
+                        Enlazar();
+                        StopDraw("not");
                     }
                 }else{
-                    Anterior.setFill(Color.BLACK);
-                    Anterior.HaveLine=false;
-                    Anterior=null;
-                    temp=null;
-                    Draw=false;
-                    HaveLine=false;
+                    StopDraw("all");
                 }
             }else{
-                StartX = e.getSceneX();
-                StartY = e.getSceneY();
-                temp=this.Component;
-                Anterior=this;
-                RootMain.AreaText.appendText(Component.getName());
-                //StartX=this.centerXProperty();
-                //StartY=this.centerYProperty();
-                Draw = true;
-                HaveLine=true;
-                this.setFill(Color.GREEN);
+                StartDraw(e);
             }
         }
     }
+
+    private void DrawLine(MouseEvent e){
+        line = new Line(StartX, StartY, e.getSceneX(), e.getSceneY());
+        this.setFill(Color.GREEN);
+        RootMain.AreaText.appendText(Component.getName() + "..." + temp.getName());
+        RootMain.Group.getChildren().add(line);
+    }
+
+    private void StartDraw(MouseEvent e){
+        StartX = e.getSceneX();
+        StartY = e.getSceneY();
+        temp=this.Component;
+        Anterior=this;
+        RootMain.AreaText.appendText(Component.getName());
+        Draw = true;
+        HaveLine=true;
+        this.setFill(Color.GREEN);
+    }
+
+    private void StopDraw(String i){
+        if(i.equals("all")){
+        Anterior.setFill(Color.BLACK);
+        Anterior.HaveLine=false;
+        Anterior=null;
+        temp=null;
+        Draw=false;
+        HaveLine=false;
+        }else{
+            Enlazado = Anterior;
+            Anterior.Enlazado = this;
+            Anterior = null;
+            temp = null;
+            Draw = false;
+            HaveLine = true;
+        }
+    }
+
+    private void Enlazar(){
+        if (this.Type.equals("input")) {
+            this.getComponente().setInput(true);
+            if (Anterior.getComponente().getEntrada1() != null) {
+                Anterior.getComponente().setSegundaEntrada(this.Component);
+            } else {
+                Anterior.getComponente().setPrimeraEntrada(this.Component);
+            }
+        } else {
+            Anterior.getComponente().setInput(true);
+            if (this.getComponente().getEntrada1() != null) {
+                this.getComponente().setSegundaEntrada(Anterior.Component);
+            } else {
+                this.getComponente().setPrimeraEntrada(Anterior.Component);
+            }
+        }
+    }
+
 
     public Line getLine() {
         return line;

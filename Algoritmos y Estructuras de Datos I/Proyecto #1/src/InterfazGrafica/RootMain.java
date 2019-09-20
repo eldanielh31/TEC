@@ -7,6 +7,7 @@ import javafx.application.Application;
 import javafx.event.EventHandler;
 import javafx.scene.Group;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextArea;
 import javafx.scene.image.ImageView;
@@ -36,6 +37,7 @@ public class RootMain extends Application {
     static final TextArea AreaText=new TextArea();
     static final Group Group=new Group();
     static final Pane Centro=new Pane(Group);
+    private Button Play=new Button("Play");
     private static ImageView ANDI;
     private static  ImageView NANDI;
     private static  ImageView ORI;
@@ -87,8 +89,16 @@ public class RootMain extends Application {
         });
 
         //Componentes del border derecho
-        VBox compLog = new VBox(ANDI, NANDI, ORI, NORI, XORI, XNORI, NOTI);
+        VBox compLog = new VBox(ANDI, NANDI, ORI, NORI, XORI, XNORI, NOTI, Play);
         ScrollPane Derecha=new ScrollPane(compLog);
+
+        //Colocando evento al boton play
+        Play.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                Eventos.Play(event);
+            }
+        });
 
         //Creacion del border pane y colocacion de componentes
         AreaText.setEditable(false);
