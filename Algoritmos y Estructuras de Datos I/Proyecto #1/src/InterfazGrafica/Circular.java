@@ -8,6 +8,9 @@ import javafx.scene.shape.Circle;
 import javafx.scene.shape.Line;
 import javafx.scene.shape.Shape;
 
+/**
+ * Clase correspondiente a los circulos de input y output.
+ */
 public class Circular extends Circle{
     private static boolean Draw;
     private static double StartX, StartY;
@@ -15,13 +18,17 @@ public class Circular extends Circle{
     private Line line;
     private boolean HaveLine;
     private Componente Component;
-    private Circular Enlazado;
-    private static Componente temp;
     private static Circular Anterior;
-    //Variables para mover el circulo
     private double orgSceneX,orgSceneY;
     private double orgTranslateX,orgTranslateY;
 
+    /**
+     * Contructor de la clase circular.
+     * @param X- Distancia x del circulo
+     * @param Y- Distancia y del circulo.
+     * @param component - Componente respectivo del circulo.
+     * @param type - Tipo de circulo que es (output, input).
+     */
     public Circular(double X,double Y, Componente component,String type) {
         super(X, Y, 5, Color.BLACK);
         Type=type;
@@ -79,16 +86,13 @@ public class Circular extends Circle{
     private void DrawLine(MouseEvent e){
         line = new Line(StartX, StartY, e.getSceneX(), e.getSceneY());
         this.setFill(Color.GREEN);
-        RootMain.AreaText.appendText(Component.getName() + "..." + temp.getName());
         RootMain.Group.getChildren().add(line);
     }
 
     private void StartDraw(MouseEvent e){
         StartX = e.getSceneX();
         StartY = e.getSceneY();
-        temp=this.Component;
         Anterior=this;
-        RootMain.AreaText.appendText(Component.getName());
         Draw = true;
         HaveLine=true;
         this.setFill(Color.GREEN);
@@ -99,42 +103,38 @@ public class Circular extends Circle{
         Anterior.setFill(Color.BLACK);
         Anterior.HaveLine=false;
         Anterior=null;
-        temp=null;
         Draw=false;
         HaveLine=false;
         }else{
-            Enlazado = Anterior;
-            Anterior.Enlazado = this;
             Anterior = null;
-            temp = null;
             Draw = false;
             HaveLine = true;
         }
     }
-
     private void Enlazar(){
         if (this.Type.equals("input")) {
             this.getComponente().setInput(true);
             if (Anterior.getComponente().getEntrada1() != null) {
                 Anterior.getComponente().setSegundaEntrada(this.Component);
+                System.out.println(Anterior.getComponente().getName()+" Enlazado con "+ this.getComponente().getName());
             } else {
                 Anterior.getComponente().setPrimeraEntrada(this.Component);
+                System.out.println(Anterior.getComponente().getName()+" Enlazado con "+ this.getComponente().getName());
+
             }
         } else {
             Anterior.getComponente().setInput(true);
             if (this.getComponente().getEntrada1() != null) {
                 this.getComponente().setSegundaEntrada(Anterior.Component);
+                System.out.println(this.getComponente().getName()+" Enlazado con "+ Anterior.getComponente().getName());
+
             } else {
                 this.getComponente().setPrimeraEntrada(Anterior.Component);
+                System.out.println(this.getComponente().getName()+" Enlazado con "+ Anterior.getComponente().getName());
+
             }
         }
     }
-
-
-    public Line getLine() {
-        return line;
-    }
-
     public Componente getComponente() {
         return Component;
     }

@@ -26,7 +26,7 @@ public class AND extends Componente implements Component {
      * @return - Retorna un int segun su valor de true or false
      */
     public int getSalida() {
-        if (Entrada1.getSalida() == 1 && Entrada2.getSalida()==1){
+        if (getInput1() == 1 && getInput2()==1){
             return 1;
         }
         else{

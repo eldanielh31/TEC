@@ -26,7 +26,7 @@ public class OR extends Componente implements Component {
      * @return - int 0 o 1, false o true respectivamente.
      */
     public int getSalida() {
-        if (Entrada1.getSalida() == 0 && Entrada2.getSalida()==0){
+        if (getInput1() == 0 && getInput2()==0){
             return 0;
         }
         else{

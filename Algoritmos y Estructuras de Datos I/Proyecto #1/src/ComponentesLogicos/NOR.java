@@ -26,7 +26,7 @@ public class NOR extends Componente implements Component{
      * o true respectivamente.
      */
     public int getSalida() {
-        if (Entrada1.getSalida() == 0 && Entrada2.getSalida()==0){
+        if (getInput1() == 0 && getInput2()==0){
             return 1;
         }
         else{

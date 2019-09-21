@@ -14,19 +14,27 @@ public class Componente implements Component{
     protected Componente Entrada2;
     protected String Name;
     protected boolean input;
+    protected int Output;
+    protected int input1,input2;
 
     /**
-     * Constructor de la clase que
-     * @param image
+     * Constructor de la clase componente.
+     * @param image- Imagen por default.
+     * @param entrada1- Entrada por default(null)
+     * @param entrada2- Entrada por default (null)
+     * @param name- Nombre por default.
      */
     public Componente(Image image, Componente entrada1, Componente entrada2,String name) {
         Image = image;
         Entrada1=entrada1;
         Entrada2=entrada2;
         Name=name;
+        Output=2;
         ID=IDt;
         IDt++;
         input=false;
+        input1=2;
+        input2=2;
     }
 
     /**
@@ -67,12 +75,32 @@ public class Componente implements Component{
         return and;
     }
 
+    public int getInput1() {
+        return input1;
+    }
+
+    public int getInput2() {
+        return input2;
+    }
+
+    public void setInput1(int input1) {
+        this.input1 = input1;
+    }
+
+    public void setInput2(int input2) {
+        this.input2 = input2;
+    }
+
     public Componente getEntrada2() {
         return Entrada2;
     }
 
     public Componente getEntrada1() {
         return Entrada1;
+    }
+
+    public boolean isInput() {
+        return input;
     }
 
     public void setInput(boolean input) {
@@ -86,4 +114,14 @@ public class Componente implements Component{
     public int getID() {
         return ID;
     }
+
+    public int getOutput() {
+        return Output;
+    }
+
+    public void setOutput(int output) {
+        Output = output;
+    }
+
+
 }

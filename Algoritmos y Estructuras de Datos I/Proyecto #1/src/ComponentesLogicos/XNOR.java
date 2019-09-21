@@ -25,7 +25,7 @@ public class XNOR extends Componente implements Component{
      * @return - int 0 o 1, false o true respectivamente.
      */
     public int getSalida() {
-        if (Entrada1.getSalida() == Entrada2.getSalida()){
+        if (getInput1() == getInput2()){
             return 1;
         }
         else{

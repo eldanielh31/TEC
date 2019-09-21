@@ -27,7 +27,7 @@ public class NOT extends Componente implements Component{
      * respectivamente.
      */
     public int getSalida() {
-        if (Entrada1.getSalida()==1){
+        if (getInput1()==1 || getInput2()==1){
             return 0;
         }
         else{

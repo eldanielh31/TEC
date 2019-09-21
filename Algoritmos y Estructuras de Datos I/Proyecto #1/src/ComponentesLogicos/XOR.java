@@ -26,7 +26,7 @@ public class XOR extends Componente implements Component{
      * @return - int 0 o 1, falso o true respectivamente.
      */
     public int getSalida() {
-        if (Entrada1.getSalida() == Entrada2.getSalida()){
+        if (getInput1() == getInput2()){
             return 0;
         }
         else{
