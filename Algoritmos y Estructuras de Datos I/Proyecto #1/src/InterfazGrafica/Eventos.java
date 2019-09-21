@@ -2,6 +2,7 @@ package InterfazGrafica;
 
 import ComponentesLogicos.*;
 import Lista.ListaEnlazada;
+import javafx.scene.Node;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ChoiceDialog;
 import javafx.scene.image.ImageView;
@@ -83,9 +84,8 @@ public class Eventos {
     /**
      * Este metodo es llamado por el botón para iniciar
      * las operaciones y obtener la salida del circuito.
-     * @param e- evento del boton.
      */
-    static void Play(MouseEvent e){
+    static void Play(){
         CleanLista();
         ListaEnlazada outputs=new ListaEnlazada();
         ListaEnlazada inputs=new ListaEnlazada();
@@ -103,7 +103,6 @@ public class Eventos {
             }
         }
         Asignar(RootMain.Lista);
-
         for (int x=0;x<outputs.Tamano();x++){
             for(int y=0;y<RootMain.Lista.Tamano();y++){
                 Componente c1=outputs.Obtener(x);
@@ -112,11 +111,13 @@ public class Eventos {
                     Alert alert = new Alert(Alert.AlertType.INFORMATION);
                     alert.setTitle("Information Dialog");
                     alert.setHeaderText(null);
-                    alert.setContentText("Su valor de verdad para "+outputs.Obtener(x).getID()+" es: "+ RootMain.Lista.Obtener(y).getOutput());
+                    alert.setContentText("Su valor de verdad para "+c2.getID()+" es: "+ c2.getOutput());
                     alert.showAndWait();
                 }
             }
         }
+        //RootMain.Play.setDisable(true);
+        System.out.println(RootMain.Lista.Tamano());
     }
 
     /**
@@ -159,7 +160,7 @@ public class Eventos {
             if (c.getEntrada1() != null && c.getEntrada1() != null) {
                 Componente i1 = c.getEntrada1();
                 Componente i2 = c.getEntrada2();
-                if (i1.getInput2() < 2 && i1.getInput1() < 2 && i2.getInput2() < 2 && i2.getInput1() < 2) {
+                if (i1.getOutput()<2 && i2.getOutput()< 2 && c.getOutput()==2) {
                     c.setInput1(i1.getOutput());
                     c.setInput2(i2.getOutput());
                     c.setOutput(ClasiCompo(c));
@@ -233,15 +234,38 @@ public class Eventos {
      */
     private static void CleanLista(){
         for(int x=0;x<RootMain.Lista.Tamano();x++){
-            if(RootMain.Lista.Obtener(x).getEntrada1()==null&&RootMain.Lista.Obtener(x).getEntrada1()==null){
+            RootMain.Lista.Obtener(x).setOutput(2);
+            RootMain.Lista.Obtener(x).setInput1(2);
+            RootMain.Lista.Obtener(x).setInput2(2);
+        }
+
+            /*
+            if(RootMain.Lista.Obtener(x).getEntrada1()==null&&RootMain.Lista.Obtener(x).getEntrada2()==null){
                 RootMain.Lista.Obtener(x).setOutput(2);
+            }
+            if(RootMain.Lista.Obtener(x).isInput()==false){
+                RootMain.Lista.Obtener(x).setInput1(2);
+                RootMain.Lista.Obtener(x).setInput2(2);
             }else{
                 RootMain.Lista.Obtener(x).setOutput(2);
                 RootMain.Lista.Obtener(x).setInput1(2);
                 RootMain.Lista.Obtener(x).setInput2(2);
             }
         }
+
+             */
     }
+
+    static void Reset(){
+        for(int x=0;x<RootMain.Lista.Tamano();x++){
+            RootMain.Lista.eliminar(x);
+        }
+        RootMain.Group.getChildren().clear();
+        RootMain.AreaText.clear();
+        //RootMain.Play.setDisable(false);
+        System.out.println(RootMain.Lista.Tamano());
+    }
+
 }
 
 

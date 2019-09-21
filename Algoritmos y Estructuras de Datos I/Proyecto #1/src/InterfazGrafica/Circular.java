@@ -116,21 +116,21 @@ public class Circular extends Circle{
             this.getComponente().setInput(true);
             if (Anterior.getComponente().getEntrada1() != null) {
                 Anterior.getComponente().setSegundaEntrada(this.Component);
-                System.out.println(Anterior.getComponente().getName()+" Enlazado con "+ this.getComponente().getName());
+                RootMain.AreaText.appendText(Anterior.getComponente().getName()+" Enlazado con "+ this.getComponente().getName()+"\n");
             } else {
                 Anterior.getComponente().setPrimeraEntrada(this.Component);
-                System.out.println(Anterior.getComponente().getName()+" Enlazado con "+ this.getComponente().getName());
+                RootMain.AreaText.appendText(Anterior.getComponente().getName()+" Enlazado con "+ this.getComponente().getName()+"\n");
 
             }
         } else {
             Anterior.getComponente().setInput(true);
             if (this.getComponente().getEntrada1() != null) {
                 this.getComponente().setSegundaEntrada(Anterior.Component);
-                System.out.println(this.getComponente().getName()+" Enlazado con "+ Anterior.getComponente().getName());
+                RootMain.AreaText.appendText(this.getComponente().getName()+" Enlazado con "+ Anterior.getComponente().getName()+"\n");
 
             } else {
                 this.getComponente().setPrimeraEntrada(Anterior.Component);
-                System.out.println(this.getComponente().getName()+" Enlazado con "+ Anterior.getComponente().getName());
+                RootMain.AreaText.appendText(this.getComponente().getName()+" Enlazado con "+ Anterior.getComponente().getName()+"\n");
 
             }
         }

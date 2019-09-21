@@ -37,7 +37,8 @@ public class RootMain extends Application {
     static final TextArea AreaText=new TextArea();
     static final Group Group=new Group();
     static final Pane Centro=new Pane(Group);
-    private Button Play=new Button("Play");
+    static Button Play=new Button("Play");
+    static Button Reset=new Button("Reset");
     private static ImageView ANDI;
     private static  ImageView NANDI;
     private static  ImageView ORI;
@@ -89,14 +90,20 @@ public class RootMain extends Application {
         });
 
         //Componentes del border derecho
-        VBox compLog = new VBox(ANDI, NANDI, ORI, NORI, XORI, XNORI, NOTI, Play);
+        VBox compLog = new VBox(ANDI, NANDI, ORI, NORI, XORI, XNORI, NOTI, Play, Reset);
         ScrollPane Derecha=new ScrollPane(compLog);
 
         //Colocando evento al boton play
         Play.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-                Eventos.Play(event);
+                Eventos.Play();
+            }
+        });
+        Reset.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                Eventos.Reset();
             }
         });
 
