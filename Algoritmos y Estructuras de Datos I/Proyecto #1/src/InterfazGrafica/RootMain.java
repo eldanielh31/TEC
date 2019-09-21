@@ -109,7 +109,9 @@ public class RootMain extends Application {
 
         //Creacion del border pane y colocacion de componentes
         AreaText.setEditable(false);
+        AreaText.setStyle("-fx-background-color: #1d178f;");
         Centro.setStyle("-fx-background-color: white");
+        Derecha.setStyle("-fx-background-color: #000000");
         BorderPane borderPane=new BorderPane();
         borderPane.setCenter(Centro);
         borderPane.setRight(Derecha);

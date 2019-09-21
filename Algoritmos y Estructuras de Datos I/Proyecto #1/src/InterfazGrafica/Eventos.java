@@ -71,7 +71,7 @@ public class Eventos {
             if (e.getDragboard().getString().equals(x)){
                 Componente c=new FactoryPalete().ComponentFactory(x);
                 Eventos.DroppedAux(e,i[cont],x,c);
-                RootMain.AreaText.appendText("Agrega componente "+ x +"\n");
+                RootMain.AreaText.appendText("Agrega componente "+ x +" #"+c.getID()+"\n");
                 if (RootMain.Lista.Tamano()==0){
                     RootMain.Lista.InsertarInicio(c); }
                 else{
@@ -92,13 +92,11 @@ public class Eventos {
         for (int x=0;x<RootMain.Lista.Tamano();x++){
             Componente c=RootMain.Lista.Obtener(x);
 
-            if (c.getEntrada1()!=null&&c.getEntrada2()!=null&&c.isInput()==false){
+            if (c.getEntrada1()!=null&&c.getEntrada2()!=null&& !c.isInput()){
                 outputs.Insertar(x,c);
-                System.out.println(c.getName()+"   o");
             }
-            else if (c.getEntrada1()==null&&c.getEntrada2()==null&&c.isInput()==true){
+            else if (c.getEntrada1()==null&&c.getEntrada2()==null&& c.isInput()){
                 inputs.Insertar(x,c);
-                System.out.println(c.getName()+"    i");
                 SetInputs(c);
             }
         }
@@ -111,7 +109,7 @@ public class Eventos {
                     Alert alert = new Alert(Alert.AlertType.INFORMATION);
                     alert.setTitle("Information Dialog");
                     alert.setHeaderText(null);
-                    alert.setContentText("Su valor de verdad para "+c2.getID()+" es: "+ c2.getOutput());
+                    alert.setContentText(c2.getName()+" #"+c2.getID()+ "- Output"+" = "+ c2.getOutput());
                     alert.showAndWait();
                 }
             }
@@ -154,7 +152,6 @@ public class Eventos {
                     result.ifPresent(number -> c.setInput2(Integer.parseInt(number)));
                 }
             }
-            System.out.println(c.getInput1() + " "+ c.getInput2());
         }
     }
 
@@ -257,7 +254,6 @@ public class Eventos {
         Componente.setIDt(1);
         RootMain.Group.getChildren().clear();
         RootMain.AreaText.clear();
-        //RootMain.Play.setDisable(false);
         System.out.println(RootMain.Lista.Tamano());
     }
 

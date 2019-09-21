@@ -116,21 +116,21 @@ public class Circular extends Circle{
             this.getComponente().setInput(true);
             if (Anterior.getComponente().getEntrada1() != null) {
                 Anterior.getComponente().setSegundaEntrada(this.Component);
-                RootMain.AreaText.appendText(Anterior.getComponente().getName()+" Enlazado con "+ this.getComponente().getName()+"\n");
+                RootMain.AreaText.appendText(Anterior.getComponente().getName()+" #"+Anterior.getComponente().getID()+" Enlazado con "+ this.getComponente().getName()+" #"+this.getComponente().getID()+"\n");
             } else {
                 Anterior.getComponente().setPrimeraEntrada(this.Component);
-                RootMain.AreaText.appendText(Anterior.getComponente().getName()+" Enlazado con "+ this.getComponente().getName()+"\n");
+                RootMain.AreaText.appendText(Anterior.getComponente().getName()+" #"+Anterior.getComponente().getID()+" Enlazado con "+ this.getComponente().getName()+" #"+this.getComponente().getID()+"\n");
 
             }
         } else {
             Anterior.getComponente().setInput(true);
             if (this.getComponente().getEntrada1() != null) {
                 this.getComponente().setSegundaEntrada(Anterior.Component);
-                RootMain.AreaText.appendText(this.getComponente().getName()+" Enlazado con "+ Anterior.getComponente().getName()+"\n");
+                RootMain.AreaText.appendText(this.getComponente().getName()+" #"+this.getComponente().getID()+" Enlazado con "+ Anterior.getComponente().getName()+" #"+Anterior.getComponente().getID()+"\n");
 
             } else {
                 this.getComponente().setPrimeraEntrada(Anterior.Component);
-                RootMain.AreaText.appendText(this.getComponente().getName()+" Enlazado con "+ Anterior.getComponente().getName()+"\n");
+                RootMain.AreaText.appendText(this.getComponente().getName()+" #"+this.getComponente().getID()+" Enlazado con "+ Anterior.getComponente().getName()+" #"+Anterior.getComponente().getID()+"\n");
 
             }
         }
