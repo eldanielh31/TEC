@@ -125,7 +125,19 @@ public class Eventos {
      * @param c- Componente "cabeza".
      */
     private static void SetInputs(Componente c) {
-        if (c.getEntrada1() == null && c.getEntrada2() == null) {
+        if(c.getName().equals("NOT")){
+            List<String> choices = new ArrayList<>();
+            choices.add("1");
+            choices.add("0");
+            ChoiceDialog<String> dialog = new ChoiceDialog<>("1", choices);
+            dialog.setTitle("Choice");
+            dialog.setHeaderText("Choice Value of input :"+ c.getName());
+            dialog.setContentText("Value: ");
+            Optional<String> result = dialog.showAndWait();
+            result.ifPresent(number -> c.setInput1(Integer.parseInt(number)));
+            result.ifPresent(number -> c.setInput2(Integer.parseInt(number)));
+        }
+        else if(c.getEntrada1() == null && c.getEntrada2() == null) {
             for (int x=0; x< 2; x++) {
                 List<String> choices = new ArrayList<>();
                 choices.add("1");
@@ -238,28 +250,11 @@ public class Eventos {
             RootMain.Lista.Obtener(x).setInput1(2);
             RootMain.Lista.Obtener(x).setInput2(2);
         }
-
-            /*
-            if(RootMain.Lista.Obtener(x).getEntrada1()==null&&RootMain.Lista.Obtener(x).getEntrada2()==null){
-                RootMain.Lista.Obtener(x).setOutput(2);
-            }
-            if(RootMain.Lista.Obtener(x).isInput()==false){
-                RootMain.Lista.Obtener(x).setInput1(2);
-                RootMain.Lista.Obtener(x).setInput2(2);
-            }else{
-                RootMain.Lista.Obtener(x).setOutput(2);
-                RootMain.Lista.Obtener(x).setInput1(2);
-                RootMain.Lista.Obtener(x).setInput2(2);
-            }
-        }
-
-             */
     }
 
     static void Reset(){
-        for(int x=0;x<RootMain.Lista.Tamano();x++){
-            RootMain.Lista.eliminar(x);
-        }
+        RootMain.Lista=new ListaEnlazada();
+        Componente.setIDt(1);
         RootMain.Group.getChildren().clear();
         RootMain.AreaText.clear();
         //RootMain.Play.setDisable(false);

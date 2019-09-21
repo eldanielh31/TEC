@@ -7,7 +7,7 @@ import javafx.scene.image.ImageView;
  * Clase padre para todos los componentes mas elaborados.
  */
 public class Componente implements Component{
-    private static int IDt;
+    private static int IDt=-6;
     private int ID;
     private Image Image;
     protected Componente Entrada1;
@@ -43,7 +43,12 @@ public class Componente implements Component{
      */
     @Override
     public void setPrimeraEntrada(Componente entrada) {
-        this.Entrada1=entrada;
+        if(Name.equals("NOT")){
+            Entrada1=entrada;
+            Entrada2=entrada;
+        }else {
+            this.Entrada1 = entrada;
+        }
     }
 
     /**
@@ -123,5 +128,7 @@ public class Componente implements Component{
         Output = output;
     }
 
-
+    public static void setIDt(int IDt) {
+        Componente.IDt = IDt;
+    }
 }
