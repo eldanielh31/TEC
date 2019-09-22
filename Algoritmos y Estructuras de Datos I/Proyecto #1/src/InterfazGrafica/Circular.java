@@ -4,9 +4,12 @@ import ComponentesLogicos.Componente;
 import javafx.event.EventHandler;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
+import javafx.scene.paint.Paint;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Line;
 import javafx.scene.shape.Shape;
+
+import java.util.Random;
 
 /**
  * Clase correspondiente a los circulos de input y output.
@@ -16,6 +19,7 @@ public class Circular extends Circle{
     private static double StartX, StartY;
     private String Type;
     private Line line;
+    private int finLine=0;
     private boolean HaveLine;
     private Componente Component;
     private static Circular Anterior;
@@ -52,6 +56,7 @@ public class Circular extends Circle{
         orgSceneY = t.getSceneY();
         orgTranslateX = ((Shape)(t.getSource())).getTranslateX();
         orgTranslateY = ((Shape)(t.getSource())).getTranslateY();
+
     }
 
     public void Dragged(MouseEvent t){
@@ -63,6 +68,14 @@ public class Circular extends Circle{
         this.setTranslateX(newTranslateX);
         this.setTranslateY(newTranslateY);
 
+        if (finLine==1){
+            line.setEndX(newTranslateX+getCenterX());
+            line.setEndY(newTranslateY+getCenterY());
+        }else if(finLine==2){
+            line.setStartX(newTranslateX+getCenterX());
+            line.setStartY(newTranslateY+getCenterY());
+        }
+
     }
 
     public void Click(MouseEvent e){
@@ -72,6 +85,9 @@ public class Circular extends Circle{
                     if (!this.Type.equals(Anterior.Type)) {
                         DrawLine(e);
                         Enlazar();
+                        Anterior.finLine=2;
+                        Anterior.line=line;
+                        finLine=1;
                         StopDraw("not");
                     }
                 }else{
@@ -85,6 +101,8 @@ public class Circular extends Circle{
 
     private void DrawLine(MouseEvent e){
         line = new Line(StartX, StartY, e.getSceneX(), e.getSceneY());
+        line.setStrokeWidth(3);
+        line.setStroke(randomColor());
         this.setFill(Color.GREEN);
         RootMain.Group.getChildren().add(line);
     }
@@ -135,6 +153,15 @@ public class Circular extends Circle{
             }
         }
     }
+
+    private Paint randomColor() {
+        Random random = new Random();
+        int r = random.nextInt(255);
+        int g = random.nextInt(255);
+        int b = random.nextInt(255);
+        return Color.rgb(r, g, b);
+    }
+
     public Componente getComponente() {
         return Component;
     }

@@ -5,6 +5,7 @@ import Lista.ListaEnlazada;
 import javafx.scene.Node;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ChoiceDialog;
+import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.*;
 import javafx.scene.shape.Rectangle;
@@ -40,7 +41,7 @@ public class Eventos {
      * @param i - Imagen del componente.
      * @param C - String para identificar el componente.
      */
-    private static void DroppedAux(DragEvent e,ImageView i,String C,Componente c){
+    private static void DroppedAux(DragEvent e,ImageView i,String C,Componente c, Label l){
         Circular output;
         Circular input;
         Rectangle rectangle;
@@ -48,14 +49,14 @@ public class Eventos {
             output = new Circular(e.getSceneX(), e.getSceneY() + 10,c,"output");
             Circular outputII = new Circular(e.getSceneX(), e.getSceneY() + 30,c,"output");
             input = new Circular(e.getSceneX() + 50, e.getSceneY() + 20,c,"input");
-            rectangle = new Rectangular(50, 40, i, e, output, outputII, input);
-            RootMain.Group.getChildren().addAll(rectangle, output, outputII, input);
+            rectangle = new Rectangular(50, 40, i, e, output, outputII, input,l);
+            RootMain.Group.getChildren().addAll(rectangle, output, outputII, input,l);
         }
         else{
             output = new Circular(e.getSceneX(), e.getSceneY() + 20,c,"output");
             input = new Circular(e.getSceneX() + 50, e.getSceneY() + 20,c,"input");
-            rectangle = new Rectangular(50, 40, i, e, output, null, input);
-            RootMain.Group.getChildren().addAll(rectangle, output, input);
+            rectangle = new Rectangular(50, 40, i, e, output, null, input,l);
+            RootMain.Group.getChildren().addAll(rectangle, output, input,l);
         }
     }
 
@@ -70,7 +71,7 @@ public class Eventos {
         for (String x:RootMain.Names){
             if (e.getDragboard().getString().equals(x)){
                 Componente c=new FactoryPalete().ComponentFactory(x);
-                Eventos.DroppedAux(e,i[cont],x,c);
+                Eventos.DroppedAux(e,i[cont],x,c,new Label(""+c.getID()));
                 RootMain.AreaText.appendText("Agrega componente "+ x +" #"+c.getID()+"\n");
                 if (RootMain.Lista.Tamano()==0){
                     RootMain.Lista.InsertarInicio(c); }
@@ -114,8 +115,6 @@ public class Eventos {
                 }
             }
         }
-        //RootMain.Play.setDisable(true);
-        System.out.println(RootMain.Lista.Tamano());
     }
 
     /**

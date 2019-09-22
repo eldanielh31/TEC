@@ -2,6 +2,7 @@ package InterfazGrafica;
 
 import javafx.event.EventHandler;
 import javafx.scene.Cursor;
+import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.DragEvent;
 import javafx.scene.input.MouseEvent;
@@ -16,8 +17,9 @@ public class Rectangular extends Rectangle {
     private double orgSceneX,orgSceneY;
     private double orgTranslateX,orgTranslateY;
     private Circular Output, OutputII,Input;
+    private Label ID;
 
-    public Rectangular(int width, int height, ImageView image, DragEvent e,Circular output, Circular outputII, Circular input) {
+    public Rectangular(int width, int height, ImageView image, DragEvent e,Circular output, Circular outputII, Circular input, Label label) {
         super(width,height);
         this.Output=output;
         this.OutputII=outputII;
@@ -26,6 +28,10 @@ public class Rectangular extends Rectangle {
         this.setCursor(Cursor.MOVE);
         this.setX(e.getSceneX());
         this.setY(e.getSceneY());
+        this.ID=label;
+        this.ID.setLayoutX(e.getSceneX()+40);
+        this.ID.setLayoutY(e.getSceneY());
+
         this.setOnMousePressed(RectangleOnMousePressedEventHandler);
         this.setOnMouseDragged(RectangleOnMouseDraggedEventHandler);
     }
@@ -68,6 +74,8 @@ public class Rectangular extends Rectangle {
                     double newTranslateY = orgTranslateY + offsetY;
                     ((Rectangle)(t.getSource())).setTranslateX(newTranslateX);
                     ((Rectangle)(t.getSource())).setTranslateY(newTranslateY);
+                    ID.setTranslateX(newTranslateX);
+                    ID.setTranslateY(newTranslateY);
                     if (OutputII!=null) {
                         Output.Dragged(t);
                         OutputII.Dragged(t);
