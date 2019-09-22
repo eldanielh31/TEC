@@ -93,7 +93,7 @@ public class RootMain extends Application {
         VBox compLog = new VBox(ANDI, NANDI, ORI, NORI, XORI, XNORI, NOTI, Play, Reset);
         ScrollPane Derecha=new ScrollPane(compLog);
 
-        //Colocando evento al boton play
+        //Colocando evento al boton play y reset
         Play.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {

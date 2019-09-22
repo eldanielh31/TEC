@@ -49,7 +49,10 @@ public class Circular extends Circle{
         });
     }
 
-
+    /**
+     * Evento para asiganar la posicion inicial del circulo.
+     * @param t- evento del mouse.
+     */
     public void Pressed (MouseEvent t){
 
         orgSceneX = t.getSceneX();
@@ -59,6 +62,10 @@ public class Circular extends Circle{
 
     }
 
+    /**
+     * Evento para transladar el circulo con forme se mueve el mouse.
+     * @param t- Evento del mouse.
+     */
     public void Dragged(MouseEvent t){
         double offsetX = t.getSceneX() - orgSceneX;
         double offsetY = t.getSceneY() - orgSceneY;
@@ -78,6 +85,10 @@ public class Circular extends Circle{
 
     }
 
+    /**
+     * Evento al clickear un circulo y comience o termine el draw
+     * @param e- evento del mouse.
+     */
     public void Click(MouseEvent e){
         if(!HaveLine){
             if (Draw) {
@@ -99,6 +110,11 @@ public class Circular extends Circle{
         }
     }
 
+    /**
+     * Evento para dibujar la linea que conecta
+     * visualmente los componentes.
+     * @param e- evento de mouse.
+     */
     private void DrawLine(MouseEvent e){
         line = new Line(StartX, StartY, e.getSceneX(), e.getSceneY());
         line.setStrokeWidth(3);
@@ -107,6 +123,10 @@ public class Circular extends Circle{
         RootMain.Group.getChildren().add(line);
     }
 
+    /**
+     * Metodo que llama una primera llamada de dibujo de linea.
+     * @param e- evento de mouse.
+     */
     private void StartDraw(MouseEvent e){
         StartX = e.getSceneX();
         StartY = e.getSceneY();
@@ -116,6 +136,10 @@ public class Circular extends Circle{
         this.setFill(Color.GREEN);
     }
 
+    /**
+     * Evento para terminar el dibujo de linea.
+     * @param i- String que define como parar de dibujar.
+     */
     private void StopDraw(String i){
         if(i.equals("all")){
         Anterior.setFill(Color.BLACK);
@@ -129,6 +153,11 @@ public class Circular extends Circle{
             HaveLine = true;
         }
     }
+
+    /**
+     * Evento que enlaza los circulos
+     * referenciando sus respectivos componentes.
+     */
     private void Enlazar(){
         if (this.Type.equals("input")) {
             this.getComponente().setInput(true);
@@ -154,6 +183,10 @@ public class Circular extends Circle{
         }
     }
 
+    /**
+     * Metodo para generar un color aleatorio.
+     * @return - Color
+     */
     private Paint randomColor() {
         Random random = new Random();
         int r = random.nextInt(255);
@@ -162,6 +195,10 @@ public class Circular extends Circle{
         return Color.rgb(r, g, b);
     }
 
+    /**
+     * Metodo para obtener el atributo componente
+     * @return - Componente.
+     */
     public Componente getComponente() {
         return Component;
     }

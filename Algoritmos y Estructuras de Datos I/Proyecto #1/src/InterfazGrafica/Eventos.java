@@ -101,7 +101,16 @@ public class Eventos {
                 SetInputs(c);
             }
         }
-        Asignar(RootMain.Lista);
+        try {
+            Asignar(RootMain.Lista);
+        }catch (Exception e){
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Error Dialog");
+            alert.setHeaderText(null);
+            alert.setContentText("Error al ejecutar la operación. Por favor revise su configuración.");
+            alert.showAndWait();
+            Reset();
+        }
         for (int x=0;x<outputs.Tamano();x++){
             for(int y=0;y<RootMain.Lista.Tamano();y++){
                 Componente c1=outputs.Obtener(x);
@@ -248,6 +257,9 @@ public class Eventos {
         }
     }
 
+    /**
+     * Metodo que resetea entradas y salidas de los componentes en la lista
+     */
     static void Reset(){
         RootMain.Lista=new ListaEnlazada();
         Componente.setIDt(1);

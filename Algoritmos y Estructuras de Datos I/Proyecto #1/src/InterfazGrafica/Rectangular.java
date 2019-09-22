@@ -13,12 +13,26 @@ import javafx.scene.shape.Line;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.shape.Shape;
 
+/**
+ * Clase heredada de rectangulo que funciona como estadia de la imagen en el pane central.
+ */
 public class Rectangular extends Rectangle {
     private double orgSceneX,orgSceneY;
     private double orgTranslateX,orgTranslateY;
     private Circular Output, OutputII,Input;
     private Label ID;
 
+    /**
+     * Constructor de la clase que define los atributos y algunos eventos.
+     * @param width - ancho
+     * @param height - largo
+     * @param image - imagen
+     * @param e - evento
+     * @param output - input
+     * @param outputII - input 2
+     * @param input - output
+     * @param label - label con ID
+     */
     public Rectangular(int width, int height, ImageView image, DragEvent e,Circular output, Circular outputII, Circular input, Label label) {
         super(width,height);
         this.Output=output;
