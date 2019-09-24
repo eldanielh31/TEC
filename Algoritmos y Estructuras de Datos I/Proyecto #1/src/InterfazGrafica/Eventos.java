@@ -137,7 +137,7 @@ public class Eventos {
             choices.add("0");
             ChoiceDialog<String> dialog = new ChoiceDialog<>("1", choices);
             dialog.setTitle("Choice");
-            dialog.setHeaderText("Choice Value of input :"+ c.getName());
+            dialog.setHeaderText("Choice Value of input :"+ c.getName()+" #"+c.getID());
             dialog.setContentText("Value: ");
             Optional<String> result = dialog.showAndWait();
             result.ifPresent(number -> c.setInput1(Integer.parseInt(number)));
@@ -150,7 +150,7 @@ public class Eventos {
                 choices.add("0");
                 ChoiceDialog<String> dialog = new ChoiceDialog<>("1", choices);
                 dialog.setTitle("Choice");
-                dialog.setHeaderText("Choice Value of input :"+ c.getName());
+                dialog.setHeaderText("Choice Value of input :"+ c.getName()+" #"+c.getID());
                 dialog.setContentText("Value: ");
 
                 Optional<String> result = dialog.showAndWait();
